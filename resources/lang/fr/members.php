@@ -41,7 +41,7 @@ return [
     'member_info_pdf' => 'Informations sur le membre en PDF',
 
     // committees
-    "committee_name" => 'Nom de Comité',
+    "committee_name" => 'Nom du Comité',
     "political_party" => "Parti Politique",
     "committees" => "Comités",
     "committees_list" => "Liste des comités",
