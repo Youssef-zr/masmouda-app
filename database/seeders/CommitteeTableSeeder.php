@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Committee;
 use Illuminate\Database\Seeder;
 
-class CommiteeTableSeeder extends Seeder
+class CommitteeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -74,7 +74,7 @@ class CommiteeTableSeeder extends Seeder
                 "description_fr" => "Cette commission s'occupe des questions relatives aux médias et à la communication.",
             ],
         ];
-        
+
 
         Committee::insert(values: $committees);
     }

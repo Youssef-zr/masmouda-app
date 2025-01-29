@@ -20,6 +20,7 @@ return [
     "record_updated_success" => "Enregistrement mis à jour avec succès",
     "record_created_success" => "Enregistrement créé avec succès",
     "record_deleted_success" => "Enregistrement supprimé avec succès",
+    'record_info' => "Informations d'enregistrement !!",
 
     // modal
     "modal_header_title" => "Supprimer l'enregistrement !",

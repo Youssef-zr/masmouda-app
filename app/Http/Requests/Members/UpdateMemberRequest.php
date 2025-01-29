@@ -29,26 +29,33 @@ class UpdateMemberRequest extends FormRequest
             'email' => "sometimes|nullable|email|unique:members,email,{$id}",
             'adress' => "sometimes|nullable|max:255",
             'rib_number' => "required|numeric|regex:/^\d{24}$/||unique:members,rib_number,{$id}",
-            "bank_name" => "sometimes|nullable|string|max:255",
+            "bank_name" => "required|string|max:255",
             'cin_number' => "required|alpha_num|unique:members,cin_number,{$id}",
             'role_id' => "required|string|max:255",
             'month' => 'required|digits_between:1,12',
-            'amount' => 'sometimes|nullable|numeric'
+            'amount' => 'sometimes|nullable|numeric',
+            "permissions" => ["sometimes", "nullable", "array"],
+            "political_party" => ["sometimes", "nullable", "string"],
+            "committee_id" => ["sometimes", "nullable"],
         ];
     }
 
-    public function attributes(){
+    public function attributes()
+    {
         return [
-            'name' =>__("members.name"),
-            'phone' =>__("members.phone"),
-            'email' =>__("members.email"),
-            'adress' =>__("members.adress"),
-            'rib_number' =>__("members.rib_number"),
-            'bank_name' =>__("members.bank_name"),
-            'cin_number' =>__("members.cin_number"),
-            'role_id' =>__("members.role_name"),
-            'month' =>__("members.month"),
-            'amount' =>__("members.amount"),
+            'name' => __("members.name"),
+            'phone' => __("members.phone"),
+            'email' => __("members.email"),
+            'adress' => __("members.adress"),
+            'rib_number' => __("members.rib_number"),
+            'bank_name' => __("members.bank_name"),
+            'cin_number' => __("members.cin_number"),
+            'role_id' => __("members.role_name"),
+            'month' => __("members.month"),
+            'amount' => __("members.amount"),
+            "permissions" => __(key: "members.permissions"),
+            "political_party" => __(key: "members.political_party"),
+            "committee_id" => __(key: "members.committe_name"),
         ];
     }
 }

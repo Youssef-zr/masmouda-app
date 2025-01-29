@@ -15,8 +15,7 @@ class RMemberController extends Controller
 
     public function __construct()
     {
-        $modelRepository =   new ModelRepository(new RMember);
-        $this->roleRepository = $modelRepository;
+        $this->roleRepository = new ModelRepository(new RMember);
     }
 
 
@@ -74,7 +73,6 @@ class RMemberController extends Controller
         toastr()->success(__(key: "global.record_updated_success"));
 
         return to_route("admin.role-members.index");
-
     }
 
     /**

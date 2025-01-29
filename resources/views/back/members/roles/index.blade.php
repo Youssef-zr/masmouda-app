@@ -59,7 +59,7 @@
 <!-- END Page Content -->
 
 <!-- includes -->
-@include('back._includes.modals.show-role-member')
+@include('back._includes.modals.show-record-info')
 @include('back._includes.modals.delete-record')
 
 @endsection
@@ -76,14 +76,14 @@
 <!-- ajax call ( get role member information) -->
 <script>
     $(() => {
-        $("body").on("click", ".btn-member-info", function() {
+        $("body").on("click", ".btn-record-info", function() {
 
             const url = $(this).data("url");
-            const role_member_container_el = $("#role-information");
+            const container_el = $("#container-info");
             const spiner_container_el = $(".spiner-container");
 
             spiner_container_el.removeClass('d-none');
-            role_member_container_el.html("");
+            container_el.html("");
 
             $.ajax({
                 url,
@@ -91,7 +91,7 @@
                 success: function(response, textStatus, jqXHR) {
                     if (jqXHR.done) {
                         spiner_container_el.addClass('d-none');
-                        role_member_container_el.html(response);
+                        container_el.html(response);
                     } else {
                         alert("{{ __('global.try_again_later') }}");
                     }

@@ -1,7 +1,7 @@
-@extends("back._layouts.master")
+@extends('back._layouts.master')
 
 @section("title")
-- {{ __("members.members_list") }}
+- {{ __("members.create_committee") }}
 @endsection
 
 @section("content")
@@ -9,16 +9,16 @@
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3 text-capitalize">{{ __("members.members") }}</h1>
+            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3 text-capitalize">{{ __("members.committees") }}</h1>
             <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">
                         <a href="{{ route("admin.dashboard") }}">{{ __("global.dashboard") }}</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route("admin.members.index") }}">{{ __("members.members")}}</a>
+                        <a href="{{ route("admin.committees.index") }}">{{ __("members.committees")}}</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ __("global.list")}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __("global.create")}}</li>
                 </ol>
             </nav>
         </div>
@@ -28,12 +28,13 @@
 
 <!-- Page Content -->
 <div class="content">
+
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                <a href="{{ route("admin.members.create") }}" class="btn btn-sm btn-primary px-2 py-1">
-                    <i class="fa fa-plus"></i>
-                    {{ __("global.add") }}
+                <a href="{{ route("admin.committees.index") }}" class="btn btn-sm btn-warning px-2 py-1">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ __("global.return") }}
                 </a>
             </h3>
             <div class="block-options">
@@ -51,56 +52,26 @@
             </div>
         </div>
         <div class="block-content block-content-full overflow-x-auto">
-            {{ $dataTable->table() }}
+            <div class="block-content block-content-full">
+                <!-- START Form -->
+                {!! Form::open(['route' => 'admin.committees.store', 'method' => 'post']) !!}
+                @csrf
+                @include("back.members.committees.form")
+
+                <!-- Submit -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-paper-plane"></i>
+                        {{ __('global.save') }}
+                    </button>
+                </div>
+                <!-- END Submit -->
+                {!! Form::close() !!}
+                <!-- END Form -->
+            </div>
         </div>
     </div>
-
 </div>
 <!-- END Page Content -->
-
-<!-- includes -->
-@include('back._includes.modals.show-record-info')
-@include('back._includes.modals.delete-record')
-
 @endsection
 
-<!-- stylesheets -->
-@push("css")
-@include("back._includes.datatables.css")
-@endpush
-
-<!-- scripts -->
-@push("js")
-@include("back._includes.datatables.js")
-
-<!-- ajax call ( get member information) -->
-<script>
-    $(() => {
-        $("body").on("click", ".btn-record-info", function() {
-
-            const url = $(this).data("url");
-            const container_el = $("#container-info");
-            const spiner_container_el = $(".spiner-container");
-
-            spiner_container_el.removeClass('d-none');
-            container_el.html("");
-
-            $.ajax({
-                url,
-                method: 'GET',
-                success: function(response, textStatus, jqXHR) {
-                    if (jqXHR.done) {
-                        spiner_container_el.addClass('d-none');
-                        container_el.html(response);
-                    } else {
-                        alert("{{ __('global.try_again_later') }}");
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert("{{ __('global.try_again_later') }}");
-                }
-            });
-        })
-    })
-</script>
-@endpush

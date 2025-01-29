@@ -22,9 +22,9 @@ class RoleDataTable extends DataTable
             ->addColumn('action', function ($query) {
                 $output = "<a href=" . route('admin.role-members.edit', $query->id) . " class='btn btn-sm btn-success'><i class='fa fa-pencil'></i></a>";
                 $output .= "<a href=" . route('admin.role-members.show', parameters: $query->id) . "
-                    data-bs-toggle='modal' data-bs-target='#role-info'
+                    data-bs-toggle='modal' data-bs-target='#record-info'
                     data-url='" . route("admin.role-members.show", $query->id) . "'
-                    class='btn btn-sm btn-primary mx-1 btn-member-info'>
+                    class='btn btn-sm btn-primary mx-1 btn-record-info'>
                     <i class='fa fa-eye'></i>
                 </a>";
                 $output .= "<a href='javascript:void(0)' data-bs-toggle='modal' data-bs-target='#delete-record'

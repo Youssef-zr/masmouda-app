@@ -23,11 +23,11 @@ class PDFController extends Controller
 
             $pdf = PDF::loadView('back.pdf.member-info', ['member' => $member]);
 
-            $fileName = __("members.member_info")."_{$member->name}_{$member->created_at->format("Y")}.pdf";
+            $fileName = __("members.member_info") . "_{$member->name}_{$member->created_at->format("Y")}.pdf";
 
             return $pdf->stream($fileName);
         } catch (Exception $e) {
-            abort(404);
+            abort(404, $e->getMessage());
         }
     }
 }

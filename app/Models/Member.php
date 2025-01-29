@@ -12,7 +12,22 @@ class Member extends Model
 {
     use HasFactory;
     protected $table = "members";
-    protected $fillable = ['name', 'email', 'phone', 'role_id', 'permissions', 'rib_number', 'bank_name', 'cin_number', "adress", 'month', 'amount'];
+    protected $fillable = [
+        "name",
+        "phone",
+        "email",
+        "adress",
+        "rib_number",
+        "bank_name",
+        "cin_number",
+        "role_id",
+        "month",
+        "amount",
+        "permissions",
+        "political_party",
+        "committee_id",
+    ];
+
     protected $casts = ['permissions' => 'array'];
     protected $appends = ['formated-rib-number', 'crypted-id',];
 
@@ -21,15 +36,18 @@ class Member extends Model
     // explode role permissions
     public function getRolePermissionsAttribute()
     {
-        $values = $this->permissions;
+        $permissions = $this->permissions;
 
-        $permissions = array_map(function ($text) {
-            $parts = explode('|', $text);
-            return [
-                'fr' => trim($parts[0] ?? ''),  // French part
-                'ar' => trim($parts[1] ?? ''),   // Arabic part
-            ];
-        }, $values);
+        if ($permissions) {
+
+            $permissions = array_map(function ($text) {
+                $parts = explode('|', $text);
+                return [
+                    'fr' => trim($parts[0] ?? ''),  // French part
+                    'ar' => trim($parts[1] ?? ''),   // Arabic part
+                ];
+            }, $permissions);
+        }
 
         return $permissions;
     }

@@ -9,6 +9,7 @@
             </label>
             {!! Form::text('name_ar', old(key: "name_ar"), [
             'id' => 'name_ar',
+            "dir"=>"rtl",
             'class' => 'form-control ' . ($errors->has('name_ar') ? 'is-invalid' : ''),
             'placeholder' => __('members.name_ar_placeholder')
             ]) !!}
@@ -36,23 +37,44 @@
         </div>
     </div>
 
-    <!-- form field salary -->
+    <!-- form field description_ar -->
     <div class="col-md-12">
         <div class="form-group mb-4">
-            <label for="salary" class="form-label">
-                {{ __('members.salary') }}
+            <label for="description_ar" class="form-label">
+                {{ __('members.description_ar') }}
                 <span class="text-danger">*</span>
             </label>
-            {!! Form::number('salary', old('salary'), [
-            'id' => 'salary',
-            'step' => '0.1',
-            'class' => 'form-control ' . ($errors->has('salary') ? 'is-invalid' : ''),
-            'placeholder' => __('members.salary_placeholder')
+            {!! Form::textarea('description_ar', old(key: "description_ar"), [
+            'id' => 'description_ar',
+            "rows"=>2,
+            "dir"=>"rtl",
+            'class' => 'form-control ' . ($errors->has('description_ar') ? 'is-invalid' : ''),
+            'placeholder' => __('members.description_ar_placeholder')
             ]) !!}
-            @error('salary')
+            @error('description_ar')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
+
+    <!-- form field description_fr -->
+    <div class="col-md-12">
+        <div class="form-group mb-4">
+            <label for="description_fr" class="form-label">
+                {{ __('members.description_fr') }}
+                <span class="text-danger">*</span>
+            </label>
+            {!! Form::textarea('description_fr', old(key: "description_fr"), [
+            'id' => 'description_fr',
+            "rows"=>2,
+            'class' => 'form-control ' . ($errors->has('description_fr') ? 'is-invalid' : ''),
+            'placeholder' => __('members.description_fr_placeholder')
+            ]) !!}
+            @error('description_fr')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
 </div>
 

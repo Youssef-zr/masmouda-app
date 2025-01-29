@@ -29,8 +29,8 @@ return [
     "role_member_info" => "Informations sur les rôles de membre !",
     "list_roles_members" => "Liste des rôles des membres",
     "roles_member" => "Rôles des membres",
-    "name_ar" => "Nom en arabe",
-    "name_fr" => "Nom en français",
+    "name_ar" => "Nom (Ar)",
+    "name_fr" => "Nom (Fr)",
     "create_role_member" => "Créer un rôle de membre",
     "update_role_member" => "Mettre à jour le rôle de membre",
     "permission_placeholder" => 'Nom du permission | الصلاحية',
@@ -41,8 +41,14 @@ return [
     'member_info_pdf' => 'Informations sur le membre en PDF',
 
     // committees
-    "committe_name"=> 'Nom de Comite',
-    "political_party"=> "Parti Politic",
+    "committee_name" => 'Nom de Comité',
+    "political_party" => "Parti Politique",
+    "committees" => "Comités",
+    "committees_list" => "Liste des comités",
+    "description_ar" => "Description (Ar)",
+    "description_fr" => "Description (FR)",
+    "create_committee" => "Créer un comite",
+    "edit_committee" => "Modifier un comite",
 
 
     // placeholders
@@ -51,14 +57,16 @@ return [
     "email_placeholder" => "Veuillez saisir le adresse email",
     "cin_number_placeholder" => "Veuillez saisir le numéro de CIN",
     "rib_number_placeholder" => "Veuillez saisir le numéro de RIB",
-    "role_name_placeholder" => "Veuillez saisir le rôle ou la fonction",
+    "role_name_placeholder" => "Sélectionnez le rôle",
     "month_placeholder" => "Veuillez saisir le mois",
     "salary_placeholder" => "Veuillez saisir le salaire",
     "amount_placeholder" => "Veuillez saisir le montant",
     "name_ar_placeholder" => "Veuillez saisir le nom en arabe",
     "name_fr_placeholder" => "Veuillez saisir le nom en français",
+    "description_ar_placeholder" => "Veuillez saisir la description en arabe",
+    "description_fr_placeholder" => "Veuillez saisir la description en français",
     "adress_placeholder" => "Veuillez saisir l'adresse",
-    "bank_name_placeholder" => "Veuillez saisir le nom de la banque",
-
-
+    "bank_name_placeholder" => "Sélectionnez la banque",
+    "political_party_placeholder" => "Sélectionnez le Parti Politique",
+    "committee_name_placeholder" => "Sélectionnez le comité",
 ];

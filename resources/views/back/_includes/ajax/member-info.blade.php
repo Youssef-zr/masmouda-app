@@ -61,7 +61,7 @@
     <li class="list-group-item d-flex">
         <strong>
             <i class="fa fa-clipboard-list gap-1"></i>
-            {{__("members.committe_name")}}:
+            {{__("members.committee_name")}}:
         </strong>
        <p class="mb-0">
            <span></i> {{ $member->committee->name_fr }}</span> |

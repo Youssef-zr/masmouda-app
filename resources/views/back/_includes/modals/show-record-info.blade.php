@@ -1,10 +1,10 @@
   <!-- Pop In Block Modal -->
-  <div class="modal fade modal-lg" id="role-info" tabindex="-1" role="dialog" aria-labelledby="role-info" aria-hidden="true">
+  <div class="modal fade modal-lg" id="record-info" tabindex="-1" role="dialog" aria-labelledby="record-info" aria-hidden="true">
       <div class="modal-dialog modal-dialog-popin" role="document">
           <div class="modal-content">
               <div class="block block-rounded block-themed block-transparent mb-0">
                   <div class="block-header bg-primary-dark">
-                      <h3 class="block-title">{{ __("members.role_member_info") }}</h3>
+                      <h3 class="block-title">{{ __("global.record_info") }}</h3>
                       <div class="block-options">
                           <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                               <i class="fa fa-fw fa-times"></i>
@@ -27,7 +27,7 @@
                           </div>
                       </div>
 
-                      <div id="role-information">
+                      <div id="container-info">
 
                       </div>
                   </div>

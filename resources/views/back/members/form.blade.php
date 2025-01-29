@@ -130,7 +130,7 @@
     </div>
 
     <!-- form field bank name -->
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group mb-4">
             <label for="bank_name" class="form-label">
                 {{ __('members.bank_name') }}
@@ -150,7 +150,7 @@
     </div>
 
     <!-- form field rib number -->
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group mb-4">
             <label for="example-maxlength9" class="form-label">
                 {{ __('members.rib_number') }}
@@ -179,8 +179,28 @@
         </div>
     </div>
 
+    <!-- form field political_party -->
+    <div class="col-md-6">
+        <div class="form-group mb-4">
+            <label for="political_party" class="form-label">
+                {{ __('members.political_party') }}
+                <span class="text-danger">*</span>
+            </label>
+
+            {!! Form::select("political_party", political_parties(), old("political_party"), [
+            'id' => 'political_party',
+            'class' => 'js-select2 form-select' . ($errors->has('political_party') ? 'is-invalid' : ''),
+            'placeholder' => __('members.political_party_placeholder')
+            ]) !!}
+
+            @error('political_party')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
     <!-- form field role name -->
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group mb-4">
             <label for="role_name" class="form-label">
                 {{ __('members.role_name') }}
@@ -194,6 +214,26 @@
             ]) !!}
 
             @error('role_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
+    <!-- form field role name -->
+    <div class="col-md-12">
+        <div class="form-group mb-4">
+            <label for="committee_id" class="form-label">
+                {{ __('members.committee_name') }}
+                <span class="text-danger">*</span>
+            </label>
+
+            {!! Form::select("committee_id", $committees, old("committee_id"), [
+            'id' => 'committee_id',
+            'class' => 'js-select2 form-select' . ($errors->has('committee_id') ? 'is-invalid' : ''),
+            'placeholder' => __('members.committee_name_placeholder')
+            ]) !!}
+
+            @error('committee_id')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -277,6 +317,72 @@
             @enderror
         </div>
     </div>
+
+
+    <!-- form field permissions -->
+    <div class="col-md-12">
+        <hr class="border-white">
+
+        <div class="form-group mt-4 mb-5
+            @error('permissions')
+                is-invalid
+            @enderror
+        ">
+            <label for="permissions" class="form-label">
+                {{ __('members.permissions') }}
+                <span class="text-danger">*</span>
+            </label>
+
+            <!-- Start permision wrapper -->
+            <div id="permissions-wrapper">
+                @if(isset($role) and $role->permissions)
+
+                @foreach($role->permissions as $permission)
+                <div class="permission-item">
+                    <div class="input-group mb-3">
+                        {!! Form::text('permissions[]', $permission, [
+                    'class' => 'form-control',
+                        'placeholder' => __('members.permission_placeholder')
+                        ]) !!}
+                        <div class="input-group-text">
+                            <button class="btn btn-danger btn-sm remove-permission" data-toggle='tooltip' title='{{ __('members.remove_permission') }}'>
+                                <i class="fa fa-minus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                @else
+                <div class="permission-item">
+                    <div class="input-group mb-3">
+                        {!! Form::text('permissions[]', '', [
+                        'class' => 'form-control',
+                        'placeholder' => __('members.permission_placeholder')
+                        ]) !!}
+                        <div class="input-group-text">
+                            <button class="btn btn-danger btn-sm remove-permission" data-toggle='tooltip' title='{{ __('members.remove_permission') }}'>
+                                <i class="fa fa-minus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+            <!-- End permision wrapper -->
+
+            <div class="add-permission-container float-right my-3">
+                <button class="btn btn-primary btn-sm" data-toggle='tooltip' title='{{ __('members.add_permission') }}' id="add-permission">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+            </div>
+
+            @error('permissions')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
 </div>
 <!-- end form row -->
 
@@ -342,6 +448,34 @@
                     }
                 });
             }
+        });
+
+        // add permission
+        $('#add-permission').on('click', function(e) {
+            e.preventDefault();
+
+            const wrapper = $('#permissions-wrapper');
+            const newPermission = $('<div class="permission-item"></div>');
+            newPermission.html(`
+                    <div class="input-group mb-3">
+                        {!! Form::text('permissions[]', "", [
+                        'class' => 'form-control',
+                        'placeholder' => __('members.permission_placeholder')
+                        ]) !!}
+                        <div class="input-group-text">
+                            <button class="btn btn-danger btn-sm remove-permission" data-toggle='tooltip' title='{{ __('members.remove_permission') }}'>
+                                <i class="fa fa-minus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                `);
+            wrapper.append(newPermission);
+        });
+
+        // remove persmission
+        $("body").on('click', '.remove-permission', function(e) {
+            e.preventDefault();
+            $(this).closest('.permission-item').remove();
         });
     })
 </script>

@@ -161,7 +161,7 @@
 
             @if ($member->committee_id)
             <tr>
-                <th>{{ __("members.committe_name") }}: </th>
+                <th>{{ __("members.committee_name") }}: </th>
                 <td>
                     <p>
                         <span>{{ $member->committee->name_fr }}</span> |

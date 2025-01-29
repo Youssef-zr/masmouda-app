@@ -23,9 +23,9 @@ class MembersDataTable extends DataTable
             ->addColumn('action', function ($query) {
                 $output = "<a href=" . route('admin.members.edit', $query->id) . " class='btn btn-sm btn-success'><i class='fa fa-pencil'></i></a>";
                 $output .= "<a href=" . route('admin.members.show', parameters: $query->id) . "
-                    data-bs-toggle='modal' data-bs-target='#member-info'
+                    data-bs-toggle='modal' data-bs-target='#record-info'
                     data-url='" . route("admin.members.show", $query->id) . "'
-                    class='btn btn-sm btn-primary mx-1 btn-member-info'>
+                    class='btn btn-sm btn-primary mx-1 btn-record-info'>
                     <i class='fa fa-eye'></i>
                 </a>";
 

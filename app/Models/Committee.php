@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Committee extends Model
 {
     use HasFactory;
-    protected $fillable = ["name_ar",'name_fr','description'];
+    protected $fillable = ["name_ar",'name_fr','description_ar',"description_fr"];
     protected $table = 'committees';
 
-    
+
     /**
      * Get all of the members for the Committee
      *

@@ -26,7 +26,6 @@ class UpdateRMemberRequest extends FormRequest
         return [
             "name_ar" => ["required", "string", "max:255","unique:role_members,name_ar," . $id],
             "name_fr" => ["required", "string", "max:255","unique:role_members,name_fr," . $id],
-            "permissions" => ["required", "array"],
             "salary" => ["required", "string", "max:255"],
         ];
     }
@@ -36,7 +35,6 @@ class UpdateRMemberRequest extends FormRequest
         return [
             "name_fr" => __(key: "members.name_fr"),
             "name_ar" => __(key: "members.name_ar"),
-            "permissions" => __(key: "members.permissions"),
             "salary" => __(key: "members.salary"),
         ];
     }

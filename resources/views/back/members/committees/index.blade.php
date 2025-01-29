@@ -1,7 +1,7 @@
 @extends("back._layouts.master")
 
 @section("title")
-- {{ __("members.members_list") }}
+- {{ __("members.committees_list") }}
 @endsection
 
 @section("content")
@@ -9,14 +9,14 @@
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3 text-capitalize">{{ __("members.members") }}</h1>
+            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3 text-capitalize">{{ __("members.committees") }}</h1>
             <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">
                         <a href="{{ route("admin.dashboard") }}">{{ __("global.dashboard") }}</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route("admin.members.index") }}">{{ __("members.members")}}</a>
+                        <a href="{{ route("admin.committees.index") }}">{{ __("members.committees")}}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __("global.list")}}</li>
                 </ol>
@@ -31,7 +31,7 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                <a href="{{ route("admin.members.create") }}" class="btn btn-sm btn-primary px-2 py-1">
+                <a href="{{ route("admin.committees.create") }}" class="btn btn-sm btn-primary px-2 py-1">
                     <i class="fa fa-plus"></i>
                     {{ __("global.add") }}
                 </a>
@@ -73,7 +73,7 @@
 @push("js")
 @include("back._includes.datatables.js")
 
-<!-- ajax call ( get member information) -->
+<!-- ajax call ( get role member information) -->
 <script>
     $(() => {
         $("body").on("click", ".btn-record-info", function() {
