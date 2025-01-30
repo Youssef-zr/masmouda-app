@@ -124,4 +124,27 @@ return [
      * Callbacks needs to start by those terms, or they will be cast to string.
      */
     'callback' => ['$', '$.', 'function'],
+
+   'language' => [
+    'custom' => [
+        'sProcessing' => 'Traitemedddddnt...',
+        'sLengthMenu' => 'Afficher _dddddddddddddddddddMENU_ entrées',
+        'sZeroRecords' => 'Aucun enregdddddddddddddddddddistrement correspondant trouvé',
+        'sInfo' => 'Affichage de _STARddddddddddddddddT_ à _END_ sur _TOTAL_ entrées',
+        'sInfoEmpty' => 'Affichage de 0dddddddddddddd à 0 sur 0 entrées',
+        'sInfoFiltered' => '(filtré à pdddddddddddddddddddddddddddartir de _MAX_ entrées au total)',
+        'sSearch' => 'Recheddddddddddddddrche:',
+        'oPaginate' => [
+            'sFirst' => 'Premddddddddddddddier',
+            'sPrevious' => 'Pddddddddddddrécédent',
+            'sNext' => 'Suivadddddddddddddnt',
+            'sLast' => 'Dernddddddddddddddddddddder',
+        ],
+        'oAria' => [
+            'sSortAscending'  => ': activddddddddddddddddddddddddddddddddddddder pour trier la colonne par ordre croissant',
+            'sSortDescending' => ': activerdddddddddddd pour trier la colonne par ordre décroissant',
+        ],
+    ],
+],
+
 ];

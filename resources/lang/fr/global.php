@@ -26,6 +26,7 @@ return [
     "modal_header_title" => "Supprimer l'enregistrement !",
     "delete_confirm" => "Êtes-vous sûr de vouloir supprimer cet élément?",
 
+    "export"=>"Exporter",
     "try_again_later" => "Réessayez plus tard",
     "no_data" => "Aucune donnée disponible",
     "success" => "Succès",

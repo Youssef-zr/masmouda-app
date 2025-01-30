@@ -16,6 +16,7 @@ class MemberFactory extends Factory
      */
     public function definition(): array
     {
+        $rand_key = array_rand(political_parties());
         return [
             "name" => fake()->name(),
             "phone" => fake()->phoneNumber(),
@@ -25,7 +26,7 @@ class MemberFactory extends Factory
             "rib_number" => fake()->randomNumber(6) . '000000000000000000',
             "bank_name" => fake()->company(),
             "month" => random_int(1, 12),
-            "political_party" =>  political_parties()[random_int(1, 13)],
+            "political_party" =>  political_parties()[$rand_key],
             "role_id" => random_int(1, max: 10),
             "committee_id" => random_int(1, max: 10),
             "permissions" => [

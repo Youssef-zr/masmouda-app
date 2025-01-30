@@ -23,8 +23,11 @@ class CommitteeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(CommitteeDataTable $datatable) {
-        return $datatable->render('back.members.committees.index');
+    public function index(CommitteeDataTable $datatable)
+    {
+        $datatableLang = datatables_lang();
+
+        return $datatable->render('back.members.committees.index', compact('datatableLang'));
     }
 
     /**
@@ -54,7 +57,7 @@ class CommitteeController extends Controller
     {
         $committee = $this->committeeRepository->find($id);
 
-        return view("back._includes.ajax.commettee-info",compact('committee'));
+        return view("back._includes.ajax.commettee-info", compact('committee'));
     }
 
     /**
@@ -63,8 +66,8 @@ class CommitteeController extends Controller
     public function edit(int $id)
     {
         $committee = $this->committeeRepository->find($id);
-        
-        return view("back.members.committees.update",compact("committee"));
+
+        return view("back.members.committees.update", compact("committee"));
     }
 
     /**
@@ -72,7 +75,7 @@ class CommitteeController extends Controller
      */
     public function update(UpdateCommitteeRequest $request, int $id)
     {
-        $this->committeeRepository->update($id,$request->validated());
+        $this->committeeRepository->update($id, $request->validated());
         toastr()->success(__(key: "global.record_updated_success"));
 
         return to_route("admin.committees.index");

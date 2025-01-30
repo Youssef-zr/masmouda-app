@@ -25,15 +25,15 @@ class CreateMemberRequest extends FormRequest
             'name' => "required|string|max:255",
             'phone' => "required|digits:10|unique:members",
             'email' => "sometimes|nullable|email|unique:members",
-            'adress' => "sometimes|nullable|max:255",
+            'adress' => "required|max:255",
             'rib_number' => "required|numeric|regex:/^\d{24}$/|unique:members",
-            "bank_name" => "required|nullable|string|max:255",
+            "bank_name" => "required|string|max:255",
             'cin_number' => "required|alpha_num|unique:members",
             'role_id' => "required|string|max:255",
             'month' => 'required|digits_between:1,12',
             'amount' => 'sometimes|nullable|numeric',
             "permissions" => ["sometimes", "nullable", "array"],
-            "political_party" => ["sometimes", "nullable", "string"],
+            "political_party" => ["required", "nullable", "string"],
             "committee_id" => ["sometimes", "nullable"],
         ];
     }

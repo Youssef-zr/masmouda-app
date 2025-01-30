@@ -31,9 +31,28 @@
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                <a href="{{ route("admin.members.create") }}" class="btn btn-sm btn-primary px-2 py-1">
+                <a href="{{ route("admin.members.create") }}"
+                    data-bs-toggle="tooltip"
+                    title="{{ __('members.add_member') }}"
+                    class="btn btn-sm btn-primary px-2 py-1">
                     <i class="fa fa-plus"></i>
                     {{ __("global.add") }}
+                </a>
+
+                <a href="{{ route("admin.members.export-members") }}" target="_blank"
+                    data-bs-toggle="tooltip"
+                    title="{{ __('members.members_export_pdf') }}"
+                    class="btn btn-sm btn-warning px-2 py-1">
+                    <i class="fa fa-file-pdf"></i>
+                    {{ __("global.export") }}
+                </a>
+
+                <a href="{{ route("admin.members.generate-pdf-commitments") }}" target="_blank"
+                    data-bs-toggle="tooltip"
+                    title="{{ __('members.members_commitments_list') }}"
+                    class="btn btn-sm btn-success px-2 py-1">
+                    <i class="fa fa-file-pdf"></i>
+                    {{ __("members.commitments") }}
                 </a>
             </h3>
             <div class="block-options">
@@ -100,7 +119,12 @@
                     alert("{{ __('global.try_again_later') }}");
                 }
             });
-        })
+        });
+
+        // init tooltips
+        setTimeout(() => {            
+            $("[data-bs-toggle='tooltip']").tooltip();
+        }, 2000);
     })
 </script>
 @endpush

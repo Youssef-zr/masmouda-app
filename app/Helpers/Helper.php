@@ -90,3 +90,28 @@ if (!function_exists("political_parties")) {
         ];
     }
 }
+
+/**
+ * datatablas lang
+ **/
+
+if (!function_exists('datatables_lang')) {
+    function datatables_lang()
+    {
+        return [
+            'sProcessing' => trans('datatables.sProcessing'),
+            'sLengthMenu' => trans('datatables.sLengthMenu'),
+            'sZeroRecords' => trans('datatables.sZeroRecords'),
+            'sInfo' => trans('datatables.sInfo'),
+            'sInfoEmpty' => trans('datatables.sInfoEmpty'),
+            'sInfoFiltered' => trans('datatables.sInfoFiltered'),
+            'sSearch' => trans('datatables.sSearch'),
+            'oPaginate' => [
+                'sFirst' => trans('datatables.sFirst'),
+                'sLast' => trans('datatables.sLast'),
+                'sNext' => trans('datatables.sNext'),
+                'sPrevious' => trans('datatables.sPrevious'),
+            ],
+        ];
+    }
+}

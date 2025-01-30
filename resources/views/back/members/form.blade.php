@@ -9,19 +9,21 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('name') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="far fa-user"></i>
                 </span>
+
                 {!! Form::text('name', old(key: "name"), [
                 'id' => 'name',
                 'class' => 'form-control ' . ($errors->has('name') ? 'is-invalid' : ''),
                 'placeholder' => __('members.name_placeholder')
                 ]) !!}
+
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            @error('name')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
         </div>
     </div>
 
@@ -30,23 +32,24 @@
         <div class="form-group mb-4">
             <label for="email" class="form-label">
                 {{ __('members.email') }}
-                <span class="text-danger">*</span>
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('email') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="far fa-envelope"></i>
                 </span>
+
                 {!! Form::email('email', old("email"), [
                 'id' => 'email',
                 'class' => 'form-control ' . ($errors->has('email') ? 'is-invalid' : ''),
                 'placeholder' => __('members.email_placeholder')
                 ]) !!}
+
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            @error('email')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
         </div>
     </div>
 
@@ -59,19 +62,20 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('adress') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="fa fa-map-marker-alt"></i>
                 </span>
+
                 {!! Form::text('adress', old("adress"), [
                 'id' => 'adress',
                 'class' => 'form-control ' . ($errors->has('adress') ? 'is-invalid' : ''),
                 'placeholder' => __('members.adress_placeholder')
                 ]) !!}
-            </div>
 
-            @error('adress')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                @error('adress')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 
@@ -84,9 +88,10 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('phone') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="fa fa-mobile-alt"></i>
                 </span>
+
                 {!! Form::text('phone', old("phone"), [
                 "maxlength"=>"10",
                 "data-always-show"=>"true",
@@ -96,11 +101,11 @@
                 'class' => 'js-maxlength form-control ' . ($errors->has('phone') ? 'is-invalid' : ''),
                 'placeholder' => __('members.phone_placeholder')
                 ]) !!}
-            </div>
 
-            @error('phone')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 
@@ -113,19 +118,20 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('cin_number') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="fa fa-id-card"></i>
                 </span>
+
                 {!! Form::text('cin_number', old("cin_number"), [
                 'id' => 'cin_number',
                 'class' => 'form-control ' . ($errors->has('cin_number') ? 'is-invalid' : ''),
                 'placeholder' => __('members.cin_number_placeholder')
                 ]) !!}
-            </div>
 
-            @error('cin_number')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                @error('cin_number')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 
@@ -139,12 +145,12 @@
 
             {!! Form::select("bank_name", moroccoBankAgencies(), old("bank_name"), [
             'id' => 'bank_name',
-            'class' => 'js-select2 form-select' . ($errors->has('bank_name') ? 'is-invalid' : ''),
+            'class' => 'js-select2 form-select form-control' . ($errors->has('bank_name') ? 'd-block is-invalid' : ''),
             'placeholder' => __('members.bank_name_placeholder')
             ]) !!}
 
             @error('bank_name')
-            <div class="invalid-feedback">{{ $message }}</div>
+            <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
     </div>
@@ -158,9 +164,10 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
+                <span class="input-group-text {{ $errors->has('rib_number') ? 'bg-danger text-white border-danger' : ''}}">
                     <i class="fa fa-credit-card"></i>
                 </span>
+
                 {!! Form::text('rib_number', old("rib_number"), [
                 "inputmode"=>"numeric",
                 "maxlength"=>"24",
@@ -171,11 +178,11 @@
                 'class' => 'js-maxlength form-control ' . ($errors->has('rib_number') ? 'is-invalid' : ''),
                 'placeholder' => __('members.rib_number_placeholder')
                 ]) !!}
-            </div>
 
-            @error('rib_number')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                @error('rib_number')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 
@@ -189,12 +196,12 @@
 
             {!! Form::select("political_party", political_parties(), old("political_party"), [
             'id' => 'political_party',
-            'class' => 'js-select2 form-select' . ($errors->has('political_party') ? 'is-invalid' : ''),
+            'class' => 'js-select2 form-select form-control' . ($errors->has('political_party') ? 'd-block is-invalid' : ''),
             'placeholder' => __('members.political_party_placeholder')
             ]) !!}
 
-            @error('political_party')
-            <div class="invalid-feedback">{{ $message }}</div>
+           @error('political_party')
+            <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
     </div>
@@ -209,12 +216,12 @@
 
             {!! Form::select("role_id", $roles, old("role_id"), [
             'id' => 'role_id',
-            'class' => 'js-select2 form-select' . ($errors->has('role_id') ? 'is-invalid' : ''),
+            'class' => 'js-select2 form-select form-control' . ($errors->has('role_id') ? 'd-block is-invalid' : ''),
             'placeholder' => __('members.role_name_placeholder')
             ]) !!}
-
-            @error('role_id')
-            <div class="invalid-feedback">{{ $message }}</div>
+        
+           @error('role_id')
+            <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
     </div>
@@ -229,12 +236,12 @@
 
             {!! Form::select("committee_id", $committees, old("committee_id"), [
             'id' => 'committee_id',
-            'class' => 'js-select2 form-select' . ($errors->has('committee_id') ? 'is-invalid' : ''),
+            'class' => 'js-select2 form-select form-control' . ($errors->has('committee_id') ? 'd-block is-invalid' : ''),
             'placeholder' => __('members.committee_name_placeholder')
             ]) !!}
-
-            @error('committee_id')
-            <div class="invalid-feedback">{{ $message }}</div>
+       
+           @error('committee_id')
+            <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
     </div>
@@ -248,9 +255,10 @@
             </label>
 
             <div class="input-group">
-                <span class="input-group-text">
-                    <i class="fa fa-calendar-days"></i>
+                <span class="input-group-text {{ $errors->has('month') ? 'bg-danger text-white border-danger' : ''}}">
+                    <i class=" fa fa-calendar-days"></i>
                 </span>
+
                 {!! Form::number('month', old("month"), [
                 'id' => 'month',
                 'min' => 1,
@@ -258,11 +266,11 @@
                 'class' => 'form-control ' . ($errors->has('month') ? 'is-invalid' : ''),
                 'placeholder' => __('members.month_placeholder')
                 ]) !!}
-            </div>
 
-            @error('month')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                @error('month')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 
@@ -321,7 +329,7 @@
 
     <!-- form field permissions -->
     <div class="col-md-12">
-        <hr class="border-white">
+        <hr class="border-primary">
 
         <div class="form-group mt-4 mb-5
             @error('permissions')
@@ -330,7 +338,6 @@
         ">
             <label for="permissions" class="form-label">
                 {{ __('members.permissions') }}
-                <span class="text-danger">*</span>
             </label>
 
             <!-- Start permision wrapper -->
@@ -341,7 +348,7 @@
                 <div class="permission-item">
                     <div class="input-group mb-3">
                         {!! Form::text('permissions[]', $permission, [
-                    'class' => 'form-control',
+                        'class' => 'form-control',
                         'placeholder' => __('members.permission_placeholder')
                         ]) !!}
                         <div class="input-group-text">

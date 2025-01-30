@@ -32,9 +32,8 @@ class MembersDataTable extends DataTable
                 $output .= "<a href=" . route('admin.members.pdf.member-info', parameters: $query->cryptedId) . "
                     class='btn btn-sm btn-warning mx-1'
                     target='_blank'
-                    title='" . __('members.member_info_pdf') . "'
-                    data-target='tooltip'
-                    data-toggle='tooltip'>
+                    data-bs-toggle='tooltip'
+                    title='" . __('members.member_info_pdf') . "'>
                     <i class='fas fa-file-pdf'></i>
                 </a>";
 

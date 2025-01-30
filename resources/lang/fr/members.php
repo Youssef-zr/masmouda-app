@@ -18,11 +18,15 @@ return [
     "salary" => "Salaire",
     "amount" => "Montant",
     "action" => "Action",
+    "add_member" => "Ajouter un membre",
     "create_member" => "créer un membre",
     "edit_member" => "modifier un membre",
     "member_info" => "Informations relatives au membre",
-    "yearly" => "Annuel",
-
+    "yearly" => "Annuel",    
+    "members_commitments_list"=>'Liste des engamements des membres',
+    "members_commitments"=>'Les engagements des membres',
+    "commitments"=>'Engagements',
+    "members_export_pdf"=>"Exporter La liste Des Membres (PDF)",
 
     // roles
     "roles" => "Rôles",
@@ -49,6 +53,7 @@ return [
     "description_fr" => "Description (FR)",
     "create_committee" => "Créer un comite",
     "edit_committee" => "Modifier un comite",
+
 
 
     // placeholders
