@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="{{ app()->getLocale() == 'ar' ? 'ltr' : 'rtl' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -7,236 +7,63 @@
     <title>{{ __("members.members_commitments_list") }}</title>
     <meta charset="UTF-8">
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
         body {
-            font-family: 'cairo', sans-serif !important;
-            font-size: 16.5px;
-            line-height: 0.9;
-            padding: 15px 30px;
+            font-family: "cairo", 'Times New Roman', Times, serif;
+            font-size: 16px;            
         }
 
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            color: #1e272e;
-            border-collapse: collapse;
-            font-family: 'cairo', sans-serif;
+        h2.title {
+            margin-top: 100px
         }
 
-        .table-permissions {
-            border: 1px solid #34495e;
+        .paragraph {
+            margin-bottom: 5px;
+            font-size: 1rem;
+            line-height: 1
         }
 
-        .table-permissions tbody td {
-            border: none;
-            border-bottom: 1px solid #34495e;
-        }
-
-        .table tr th {
-            text-align: left;
-        }
-
-        .table .table-title {
-            font-size: 30px;
-        }
-
-        .table th,
-        .table td {
-            padding: .80rem;
-            vertical-align: top;
-            border: 1px solid #34495e;
-        }
-
-
-        .bg-gray {
-            background-color: #34495e;
-            color: white;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .mt-5 {
-            margin-top: 35px;
-        }
-
-        .pt-5 {
-            padding-top: 45px;
-        }
-
-        .text-capitalize {
-            text-transform: capitalize;
-        }
-
-        .text-uppercase {
-            text-transform: uppercase;
-        }
-
-        .french-text {
-            line-height: 5px;
-        }
-
-        .arabic-text {
-            direction: rtl !important;
-            text-align: right;
-        }
-
-        .text-spacing {
-            letter-spacing: 1px;
-        }
-
-        .header {
+        .text-content {
+            margin-top: 15px;
             margin-bottom: 50px;
-            padding: .06rem .80rem
+            font-size: 1.2rem
         }
 
-        .mt-4 {
-            margin-top: 20px;
-        }
+        .commitment-item {}
     </style>
 </head>
 
 <body>
 
-    @if($members->count()>0)
-    @foreach ($members as $member)
-    <div class="container" style="height:842px">
-        <div class="header bg-gray">
-            <p class="header-item">
-                <strong class="text-capitalize">{{ __("global.rural_commune") }}</strong>
-                <span> ( {{ env("APP_NAME") }})</span>
-            </p>
-            <p id="header-item">
-                <strong class="text-capitalize" style="margin-right: 8px;">{{ __("global.fiscal_year") }}</strong>
-                <span>({{$member->created_at->format("Y")}})</span>
-            </p>
-        </div>
+    <div class="container">
+        <div class="commitments">
 
-        <table class="table table-striped">
-            <tr>
-                <td colspan="2" class="bg-gray">
-                    <h3 class="text-spacing text-capitalize">
-                        <span>{{ __("members.member_info") }}</span>
-                        ({{$member->name}})
-                    </h3>
-                </td>
-            </tr>
-            <tr>
-                <th>{{ __("members.name") }}: </th>
-                <td>{{ $member->name }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.email") }}: </th>
-                <td>{{ $member->email }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.phone") }}: </th>
-                <td>{{ $member->phone }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.adress") }}: </th>
-                <td>{{ $member->adress }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.cin_number") }}: </th>
-                <td class="text-uppercase">{{ $member->cin_number }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.bank_name") }}: </th>
-                <td>{{ $member->bank_name }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.rib_number") }}: </th>
-                <td>{{ $member->formatedRibNumber }}</td>
-            </tr>
-            <tr>
-                <th>{{ __("members.political_party") }}: </th>
-                <td>
-                    <span>{{ $member->political_party }}</span>
-                </td>
-            </tr>
-
-            @if ($member->committee_id)
-            <tr>
-                <th>{{ __("members.committee_name") }}: </th>
-                <td>
-                    <p>
-                        <span>{{ $member->committee->name_fr }}</span> |
-                        <span>{{ $member->committee->name_ar }}</span>
+            @if($members->count()>0)
+            @foreach ($members as $member )
+            <div class="commitment-item" style="height:800px">
+                <div class="header">
+                    <p class="paragraph" dir="rtl">
+                        التاريخ: {{ now()->format("Y/m/d") }}
                     </p>
-                </td>
-            </tr>
+                    <p class="paragraph">الاسم الكامل: <span>{{$member->name}}</span></p>
+                    <p class="paragraph">رقم بطاقة التعريف الوطنية: <span>{{ $member->cin_number }}</span></p>
+                    <p class="paragraph">رقم الحساب البنكي: <span dir="ltr">{{ $member->formatedRibNumber }}</span></p>
+                </div>
+
+                <h2 class="title">الموضوع: التزام بصحة المعلومات الشخصية</h2>
+
+                <p class='text-content'>
+                انا الموقع أسفله
+                    أقر وأتعهد بموجب هذا التزامي، بأن جميع المعلومات التي قدمتها هي صحيحة ودقيقة. كما ألتزم بإعلام الجهات المعنية في حال حدوث أي تغيير في هذه البيانات، وأتحمل المسؤولية الكاملة في حال اكتشاف أي تزوير أو خطأ في المعلومات المقدمة.
+                </p>
+                <p>الامضاء: ____________</p>
+
+            </div>
+            @endforeach
             @endif
 
-            <tr>
-                <th>{{ __("members.role_name") }}: </th>
-                <td>
-                    <p>
-                        <span>{{ $member->role->name_fr }}</span> |
-                        <span>{{ $member->role->name_ar }}</span>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <th>{{ __("members.salary") }}: </th>
-                <td>
-                    {{ $member->role->salary }}
-                    {{ __("global.mad_currency")}}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    {{ __("members.amount") }}:
-                    ({{ __("members.yearly")}})
-                </th>
-                <td>
-                    {{ $member->amount }}
-                    {{ __("global.mad_currency")}}
-                </td>
-            </tr>
-        </table>
-
-        @if ($member->rolePermissions)
-        <table class="table table-striped mt-4 table-permissions">
-            <tr>
-                <th class="bg-gray" colspan="2">
-                    <h4 class="text-spacing text-capitalize">
-                        {{ __("members.role_permissions") }}
-                        ({{ $member->role->name_fr }})
-                    </h4>
-                </th>
-            </tr>
-            @foreach ($member->rolePermissions as $permission)
-            <tbody>
-                <tr>
-                    <td>
-                        @if ($permission['fr'])
-                        <p class="french-text">
-                            - {{ $permission['fr'] }}
-                        </p>
-                        @endif
-                    </td>
-                    <td style="text-align: right;">
-                        @if ($permission['ar'])
-                        <p class="arabic-text" style="direction: rtl;text-align:right;margin-top:5px">
-                            {{ $permission['ar'] }} -
-                        </p>
-                        @endif
-                    </td>
-                </tr>
-            </tbody>
-            @endforeach
-        </table>
-        @endif
+        </div>
     </div>
-    @endforeach
-    @endif
+
 </body>
 
 </html>
