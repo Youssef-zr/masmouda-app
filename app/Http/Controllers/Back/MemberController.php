@@ -49,9 +49,8 @@ class MemberController extends Controller
     public function create()
     {
         $roles = $this->getMemberRoles();
-        $committees = $this->getCommittees();
 
-        return view('back.members.create', compact('roles','committees'));
+        return view('back.members.create', compact('roles'));
     }
 
     /**
@@ -84,7 +83,7 @@ class MemberController extends Controller
         $roles = $this->getMemberRoles();
         $member = $this->memberRepository->find($id);
 
-        return view('back.members.update', compact('member', "roles","committees"));
+        return view('back.members.update', compact('member', "roles"));
     }
 
     /**

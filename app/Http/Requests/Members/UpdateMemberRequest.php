@@ -34,7 +34,7 @@ class UpdateMemberRequest extends FormRequest
             'role_id' => "required|string|max:255",
             'month' => 'required|digits_between:1,12',
             'amount' => 'sometimes|nullable|numeric',
-            "permissions" => ["sometims", "nullable", "array"],
+            "permissions" => ["sometimes", "nullable", "array"],
             "political_party" => ["required", "nullable", "string"],
             "committee_id" => ["sometimes", "nullable"],
         ];
