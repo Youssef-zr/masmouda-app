@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __("members.members_commitments_list_yearly") }}</title>
+    <title>{{ __("members.members_decision_list_yearly") }}</title>
     <meta charset="UTF-8">
     <style>
         body {

@@ -17,15 +17,21 @@ Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
     route::get("/", fn() => dd("Admin Dashboard"))->name("dashboard");
 
     // memebers routes (pdf)
-    Route::get('members/{id}/pdf', "PDF\PDFController@generateMemberPDF")
+    Route::get('members/{id}/pdf', "PDF\MemberPDFController@generateMemberPDF")
         ->name('members.pdf.member-info');
-    Route::get("memebers/commitments/pdf/{type?}", action: "PDF\PDFController@generateCommitments")
-        ->name("members.generate-pdf-commitments");
-    Route::get("memebers/pdf/export", action: "PDF\PDFController@exportMembers")
+
+    Route::get("memebers/decisions/pdf/{type?}", action: "PDF\MemberPDFController@generateDecisions")
+        ->name("members.generate-pdf-decisions");
+
+    Route::get("memebers/pdf/export", action: "PDF\MemberPDFController@exportMembers")
         ->name("members.export-members");
 
     // memebers routes
     Route::resource('members', "MemberController");
+
+    Route::get("members/{id}/status/{status}", "MemberController@changeStatus")
+    ->name('members.change-status');
+
     Route::post('members/get-role-salary', "MemberController@getRoleSalary")
         ->name('members.get-role-salary')
         ->where('id', '[0-9]+');

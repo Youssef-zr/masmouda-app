@@ -6,7 +6,6 @@ use App\DataTables\MembersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Members\CreateMemberRequest;
 use App\Http\Requests\Members\UpdateMemberRequest;
-use App\Models\Committee;
 use App\Models\RMember;
 use App\Repositories\Back\Members\MemberRepository;
 
@@ -34,16 +33,6 @@ class MemberController extends Controller
             ->toArray();
 
         return $roles;
-    }
-
-    // get committees as and array
-    public function getCommittees()
-    {
-        $committees = Committee::orderBy("id", 'asc')
-            ->pluck('name_' . app()->getLocale(), 'id')
-            ->toArray();
-
-        return $committees;
     }
 
     // get role salary
@@ -93,7 +82,6 @@ class MemberController extends Controller
     public function edit(int $id)
     {
         $roles = $this->getMemberRoles();
-        $committees = $this->getCommittees();
         $member = $this->memberRepository->find($id);
 
         return view('back.members.update', compact('member', "roles","committees"));
@@ -117,6 +105,17 @@ class MemberController extends Controller
     {
         $this->memberRepository->delete($id);
         toastr()->success(__(key: "global.record_deleted_success"));
+
+        return to_route("admin.members.index");
+    }
+
+    /**
+     * change member status
+     */
+    public function changeStatus(string $id,string $status)
+    {
+        $this->memberRepository->update($id,["status"=>$status]);
+        toastr()->success(__(key: "global.record_updated_success"));
 
         return to_route("admin.members.index");
     }

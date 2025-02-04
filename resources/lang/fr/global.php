@@ -29,6 +29,7 @@ return [
     "delete_confirm" => "Êtes-vous sûr de vouloir supprimer cet élément?",
 
     "export"=>"Exporter",
+    "export_list"=>"Exporter La Liste",
     "try_again_later" => "Réessayez plus tard",
     "no_data" => "Aucune donnée disponible",
     "success" => "Succès",

@@ -48,7 +48,7 @@ class MembersDataTable extends DataTable
             })
             ->editColumn('role', function ($query) {
                 $role_name = "name_" . app()->getLocale();
-                $output = "<p class='badge bg-info text-wrap' style='line-height:1.5'
+                $output = "<p class='badge bg-info text-wrap mb-0' style='line-height:1.5'
                     data-bs-toggle='tooltip'
                     title='" . $query->role->$role_name . "'
                 >"
@@ -57,14 +57,19 @@ class MembersDataTable extends DataTable
                 return $output;
             })
             ->editColumn("status", function ($query) {
-                $output = "<select id='status' class='form-select text-white " . ($query->status == "enabled" ? " bg-success" : "bg-danger") . "'>";
+                $output = "<div class='dropdown'>
+                <button class='btn btn-sm " . ($query->status == "enabled" ? "btn-success" : "btn-danger") . " dropdown-toggle' type='button' id='statusDropdown' data-bs-toggle='dropdown' aria-expanded='false'>
+                    " . __("global." . $query->status) . "
+                </button>
+                <ul class='dropdown-menu' aria-labelledby='statusDropdown'>";
+
                 foreach (statues() as $key => $value) {
-                    $output .= "<option value='" . $key . "'" . ($query->status == $key ? " selected" : "") . ">" . 
-                    __('global.'.$key)
-                    . "</option>";
+                    $output .= "<li>
+                    <a class='dropdown-item' href='" . route('admin.members.change-status', [$query->id,$key]) . "' " . ($query->status == $key ? "style='font-weight: bold;'" : "") . ">" . __("global." . $key) . "</a>
+                </li>";
                 }
 
-                $output .= "</select>";
+                $output .= "</ul></div>";
 
                 return $output;
             })
@@ -107,9 +112,11 @@ class MembersDataTable extends DataTable
             Column::make("name")
                 ->title(__('members.name'))
                 ->addClass('text-center'),
+            Column::make("phone")
+                ->title(__('members.phone'))
+                ->addClass('text-center'),
             Column::make("role")
                 ->title(__('members.role_name'))
-                ->width(270)
                 ->addClass('text-center'),
             Column::make("status")
                 ->title(__(key: 'members.status'))

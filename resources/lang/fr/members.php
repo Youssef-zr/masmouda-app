@@ -23,17 +23,12 @@ return [
     "edit_member" => "modifier un membre",
     "member_info" => "Informations relatives au membre",
     "yearly" => "Annuel",
-    "members_commitments_list"=>'Liste des engagements des membres',
-
-    "members_commitments_list_yearly"=>'Liste des engagements des membres ', // update the content later
-    "members_commitments_list_monthly"=>'Liste des engagements des membres', // update the content later
-
-    "members_commitments"=>'Les engagements des membres',
-    "commitments"=>'Engagements',
-    "members_export_pdf"=>"Exporter La liste Des Membres (PDF)",
-    "status"=>'statut',
-    "enabled"=>'activer',
-    "disabled"=>'desactiver',
+    "yearly_decisions" => "Décisions Annuelles",
+    "monthly_decisions" => "Décisions Mensuelles",
+    "members_export_pdf" => "Exporter La liste Des Membres (PDF)",
+    "status" => 'statut',
+    "enabled" => 'activer',
+    "disabled" => 'desactiver',
 
     // roles
     "roles" => "Rôles",
@@ -50,6 +45,9 @@ return [
     "add_permission" => "Ajouter une permission",
     "remove_permission" => "Supprimer la permission",
     'member_info_pdf' => 'Informations sur le membre en PDF',
+
+    "members_decision_list_monthly" => "Liste des décisions mensuelles",
+    "members_decision_list_yearly" => "Liste des décisions annuelles",
 
     // committees
     "committee_name" => 'Nom du Comité',

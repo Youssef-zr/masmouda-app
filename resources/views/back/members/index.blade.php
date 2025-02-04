@@ -30,38 +30,36 @@
 <div class="content">
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">
-                <a href="{{ route("admin.members.create") }}"
-                    data-bs-toggle="tooltip"
-                    title="{{ __('members.add_member') }}"
-                    class="btn btn-sm btn-primary px-2 py-1">
-                    <i class="fa fa-plus"></i>
-                    {{ __("global.add") }}
-                </a>
+            <div class="block-title">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdown-default-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-list"></i>
+                        {{ __("members.actions") }}
+                    </button>
+                    <div class="dropdown-menu text-lowercase" aria-labelledby="dropdown-default-primary">
+                        <a href="{{ route("admin.members.create") }}" class="dropdown-item mb-0">
+                            <i class="fa fa-plus-circle"></i>
+                            {{ __("global.add") }}
+                        </a>
 
-                <a href="{{ route("admin.members.export-members") }}" target="_blank"
-                    data-bs-toggle="tooltip"
-                    title="{{ __('members.members_export_pdf') }}"
-                    class="btn btn-sm btn-warning px-2 py-1">
-                    <i class="fa fa-file-pdf"></i>
-                    {{ __("global.export") }}
-                </a>
+                        <a href="{{ route("admin.members.export-members") }}" target="_blank" class="dropdown-item mb-0">
+                            <i class="fa fa-file-pdf"></i>
+                            {{ __("global.export_list") }}
+                        </a>
 
-                <a href="{{ route("admin.members.generate-pdf-commitments",["type"=>"yearly"]) }}" target="_blank"
-                    data-bs-toggle="tooltip"
-                    title="{{ __('members.members_commitments_list') }}"
-                    class="btn btn-sm btn-success px-2 py-1">
-                    <i class="fa fa-file-pdf"></i>
-                    {{ __("members.commitments") }}
-                </a>
-                <a href="{{ route("admin.members.generate-pdf-commitments",["type"=>"monthly"]) }}" target="_blank"
-                    data-bs-toggle="tooltip"
-                    title="{{ __('members.members_commitments_list') }}"
-                    class="btn btn-sm btn-success px-2 py-1">
-                    <i class="fa fa-file-pdf"></i>
-                    {{ __("members.commitments") }}
-                </a>
-            </h3>
+                        <a href="{{ route("admin.members.generate-pdf-decisions",["type"=>"yearly"]) }}" target="_blank" class="dropdown-item mb-0">
+                            <i class="fa fa-file-pdf"></i>
+                            {{ __("members.yearly_decisions") }}
+                        </a>
+
+                        <a href="{{ route("admin.members.generate-pdf-decisions",["type"=>"monthly"]) }}" target="_blank" class="dropdown-item mb-0">
+                            <i class="fa fa-file-pdf"></i>
+                            {{ __("members.monthly_decisions") }}
+                        </a>
+
+                    </div>
+                </div>
+            </div>
             <div class="block-options">
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="pinned_toggle">
