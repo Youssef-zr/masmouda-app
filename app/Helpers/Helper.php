@@ -115,3 +115,15 @@ if (!function_exists('datatables_lang')) {
         ];
     }
 }
+
+
+// status
+if (!function_exists('status')) {
+    function statues()
+    {
+        return [
+            "enabled" => __('global.enabled'),
+            "disabled" => __('global.disabled'),
+        ];
+    }
+}

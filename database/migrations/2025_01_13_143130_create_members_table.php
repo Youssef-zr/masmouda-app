@@ -25,8 +25,7 @@ return new class extends Migration
             $table->json('permissions')->nullable();
             $table->string("political_party")->nullable(); // الحزب
             $table->foreignId(column: 'role_id')->nullable()->constrained('role_members')->onDelete('set null');
-            $table->foreignId(column: 'committee_id')->nullable()->constrained('committees')->onDelete('set null');
-
+            $table->enum('status',['disabled','enabled'])->default('enabled');
             $table->timestamps();
         });
     }

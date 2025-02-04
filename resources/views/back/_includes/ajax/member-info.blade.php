@@ -58,16 +58,6 @@
              <span class="d-inline-block mx-2"></i> {{ $member->role->name_ar }}</span>
         </span>
     </li>
-    <li class="list-group-item d-flex">
-        <strong>
-            <i class="fa fa-clipboard-list gap-1"></i>
-            {{__("members.committee_name")}}:
-        </strong>
-       <p class="mb-0">
-           <span></i> {{ $member->committee->name_fr }}</span> |
-           <span></i> {{ $member->committee->name_ar }}</span>
-        </p>
-    </li>
     <li class="list-group-item">
         <strong>
             <i class="fa fa-credit-card gap-1"></i>

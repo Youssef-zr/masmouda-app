@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __("members.members_commitments_list") }}</title>
+    <title>{{ __("members.members_list") }}</title>
     <meta charset="UTF-8">
     <style>
         * {
@@ -99,6 +99,9 @@
         .mt-4 {
             margin-top: 20px;
         }
+        .container{
+
+        }
     </style>
 </head>
 
@@ -161,18 +164,6 @@
                     <span>{{ $member->political_party }}</span>
                 </td>
             </tr>
-
-            @if ($member->committee_id)
-            <tr>
-                <th>{{ __("members.committee_name") }}: </th>
-                <td>
-                    <p>
-                        <span>{{ $member->committee->name_fr }}</span> |
-                        <span>{{ $member->committee->name_ar }}</span>
-                    </p>
-                </td>
-            </tr>
-            @endif
 
             <tr>
                 <th>{{ __("members.role_name") }}: </th>

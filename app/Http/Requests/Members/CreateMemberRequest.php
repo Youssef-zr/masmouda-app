@@ -34,7 +34,6 @@ class CreateMemberRequest extends FormRequest
             'amount' => 'sometimes|nullable|numeric',
             "permissions" => ["sometimes", "nullable", "array"],
             "political_party" => ["required", "nullable", "string"],
-            "committee_id" => ["sometimes", "nullable"],
         ];
     }
 
@@ -53,7 +52,6 @@ class CreateMemberRequest extends FormRequest
             'amount' => __("members.amount"),
             "permissions" => __(key: "members.permissions"),
             "political_party" => __(key: "members.political_party"),
-            "committee_id" => __(key: "members.committe_name"),
         ];
     }
 }

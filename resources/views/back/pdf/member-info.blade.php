@@ -158,19 +158,6 @@
                     <span>{{ $member->political_party }}</span>
                 </td>
             </tr>
-
-            @if ($member->committee_id)
-            <tr>
-                <th>{{ __("members.committee_name") }}: </th>
-                <td>
-                    <p>
-                        <span>{{ $member->committee->name_fr }}</span> |
-                        <span>{{ $member->committee->name_ar }}</span>
-                    </p>
-                </td>
-            </tr>
-            @endif
-
             <tr>
                 <th>{{ __("members.role_name") }}: </th>
                 <td>

@@ -226,26 +226,6 @@
         </div>
     </div>
 
-    <!-- form field role name -->
-    <div class="col-md-12">
-        <div class="form-group mb-4">
-            <label for="committee_id" class="form-label">
-                {{ __('members.committee_name') }}
-                <span class="text-danger">*</span>
-            </label>
-
-            {!! Form::select("committee_id", $committees, old("committee_id"), [
-            'id' => 'committee_id',
-            'class' => 'js-select2 form-select form-control' . ($errors->has('committee_id') ? 'd-block is-invalid' : ''),
-            'placeholder' => __('members.committee_name_placeholder')
-            ]) !!}
-       
-           @error('committee_id')
-            <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
-    </div>
-
     <!-- form field month -->
     <div class="col-md-4">
         <div class="form-group mb-4">

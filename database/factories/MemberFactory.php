@@ -28,7 +28,6 @@ class MemberFactory extends Factory
             "month" => random_int(1, 12),
             "political_party" =>  political_parties()[$rand_key],
             "role_id" => random_int(1, max: 10),
-            "committee_id" => random_int(1, max: 10),
             "permissions" => [
                 "permission 1 | الصلاحية الاولى",
                 "permission 2 | الصلاحية الثانية",

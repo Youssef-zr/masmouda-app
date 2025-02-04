@@ -7,6 +7,7 @@ use App\Models\Member;
 use Exception;
 use Illuminate\Support\Facades\Crypt;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
+use Carbon\Carbon;
 
 class PDFController extends Controller
 {
@@ -17,7 +18,7 @@ class PDFController extends Controller
             $decryptedId = Crypt::decryptString($id);
 
             $member = Member::find($decryptedId);
-            $member->load(['role', 'committee']);
+            $member->load(['role']);
 
             $pdf = PDF::loadView('back.pdf.member-info', ['member' => $member]);
             $fileName = __("members.member_info") . "_{$member->name}_{$member->created_at->format("Y")}.pdf";
@@ -29,11 +30,12 @@ class PDFController extends Controller
     }
 
 
-    public function exportMembers(){
+    public function exportMembers()
+    {
         try {
 
-            $members = Member::whereYear("created_at", now()->year)->get();
-            $members->load(['role', 'committee']);
+            $members = Member::active('enabled')->get();
+            $members->load(['role']);
 
             $pdf = PDF::loadView('back.pdf.members-list-export', ['members' => $members]);
             $fileName = __("members.members_list") . "_{$members->first()->created_at->format("Y")}.pdf";
@@ -43,15 +45,20 @@ class PDFController extends Controller
             abort(404, $e->getMessage());
         }
     }
-    public function generateCommitments()
+    public function generateCommitments($type)
     {
         try {
 
-            $members = Member::whereYear("created_at", now()->year)->get();
-            $members->load(['role', 'committee']);
+            $members = Member::active('enabled')->get();
+            $members->load(['role']);
 
-            $pdf = PDF::loadView('back.pdf.members-commitments', ['members' => $members]);
-            $fileName = __("members.members_commitments_list") . "_{$members->first()->created_at->format("Y")}.pdf";
+            if ($type == 'yearly') {
+                $pdf = PDF::loadView('back.pdf.members-paiment-decision-yearly', ['members' => $members]);
+                $fileName = __("members.members_commitments_list_yearly") . "_{$members->first()->created_at->format("Y")}.pdf";
+            } else if("monthly") {
+                $pdf = PDF::loadView('back.pdf.members-paiment-decision-monthly', ['members' => $members]);
+                $fileName = __("members.members_commitments_list_monthly") .Carbon::now()->endOfMonth()->format("Y/m/d") . "_.pdf";
+            }
 
             return $pdf->stream($fileName);
         } catch (Exception $e) {

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Database\Eloquent\Builder;
 
 class Member extends Model
 {
@@ -25,12 +25,11 @@ class Member extends Model
         "amount",
         "permissions",
         "political_party",
-        "committee_id",
+        "status"
     ];
 
     protected $casts = ['permissions' => 'array'];
     protected $appends = ['formated-rib-number', 'crypted-id',];
-
 
 
     // explode role permissions
@@ -60,8 +59,8 @@ class Member extends Model
         $formated = '';
         if ($rib_number) {
             $formated .= substr($rib_number, 0, 3) . ' ';
-            $formated .= substr($rib_number, 4, 3) . ' < ';
-            $formated .= substr($rib_number, 6, 14) . ' > ';
+            $formated .= substr($rib_number, 4, 3) . ' ';
+            $formated .= substr($rib_number, 6, 14) . ' ';
             $formated .= substr($rib_number, offset: 22);
         }
 
@@ -77,6 +76,11 @@ class Member extends Model
         return $encryptedId;
     }
 
+    // scope active
+    public function scopeActive(Builder $query,$status){
+        return $query->where('status',$status);
+    }
+
 
     /**
      * Get the role that owns the Member
@@ -88,13 +92,4 @@ class Member extends Model
         return $this->belongsTo(RMember::class);
     }
 
-    /**
-     * Get the commitee that owns the Member
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function committee(): BelongsTo
-    {
-        return $this->belongsTo(related: Committee::class);
-    }
 }

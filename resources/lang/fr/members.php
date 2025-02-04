@@ -22,11 +22,18 @@ return [
     "create_member" => "créer un membre",
     "edit_member" => "modifier un membre",
     "member_info" => "Informations relatives au membre",
-    "yearly" => "Annuel",    
-    "members_commitments_list"=>'Liste des engamements des membres',
+    "yearly" => "Annuel",
+    "members_commitments_list"=>'Liste des engagements des membres',
+
+    "members_commitments_list_yearly"=>'Liste des engagements des membres ', // update the content later
+    "members_commitments_list_monthly"=>'Liste des engagements des membres', // update the content later
+
     "members_commitments"=>'Les engagements des membres',
     "commitments"=>'Engagements',
     "members_export_pdf"=>"Exporter La liste Des Membres (PDF)",
+    "status"=>'statut',
+    "enabled"=>'activer',
+    "disabled"=>'desactiver',
 
     // roles
     "roles" => "Rôles",

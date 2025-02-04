@@ -8,6 +8,7 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
 class MembersDataTable extends DataTable
 {
@@ -47,12 +48,29 @@ class MembersDataTable extends DataTable
             })
             ->editColumn('role', function ($query) {
                 $role_name = "name_" . app()->getLocale();
-                $output = "<span class='badge bg-info'>" . $query->role->$role_name . "</span>";
+                $output = "<p class='badge bg-info text-wrap' style='line-height:1.5'
+                    data-bs-toggle='tooltip'
+                    title='" . $query->role->$role_name . "'
+                >"
+                    . Str::limit($query->role->$role_name, 30, "...") .
+                    "</p>";
+                return $output;
+            })
+            ->editColumn("status", function ($query) {
+                $output = "<select id='status' class='form-select text-white " . ($query->status == "enabled" ? " bg-success" : "bg-danger") . "'>";
+                foreach (statues() as $key => $value) {
+                    $output .= "<option value='" . $key . "'" . ($query->status == $key ? " selected" : "") . ">" . 
+                    __('global.'.$key)
+                    . "</option>";
+                }
+
+                $output .= "</select>";
+
                 return $output;
             })
 
             ->setRowId('id')
-            ->rawColumns(['action', 'role']);
+            ->rawColumns(['action', 'role', 'status']);
     }
 
     /**
@@ -91,12 +109,11 @@ class MembersDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make("role")
                 ->title(__('members.role_name'))
+                ->width(270)
                 ->addClass('text-center'),
-            Column::make("phone")
-                ->title(__(key: 'members.phone'))
-                ->addClass('text-center'),
-            Column::make("cin_number")
-                ->title(__('members.cin_number'))
+            Column::make("status")
+                ->title(__(key: 'members.status'))
+                ->width(160)
                 ->addClass('text-center'),
             Column::computed("action")
                 ->exportable(false)

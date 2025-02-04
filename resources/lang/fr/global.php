@@ -16,6 +16,8 @@ return [
     "update" => "Mettre à jour",
     "submit" => "Submit",
     "mad_currency" => "DH",
+    "enabled"=>"Activer",
+    "disabled"=>"Desactiver",
 
     "record_updated_success" => "Enregistrement mis à jour avec succès",
     "record_created_success" => "Enregistrement créé avec succès",

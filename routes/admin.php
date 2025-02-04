@@ -19,7 +19,7 @@ Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
     // memebers routes (pdf)
     Route::get('members/{id}/pdf', "PDF\PDFController@generateMemberPDF")
         ->name('members.pdf.member-info');
-    Route::get("memebers/commitments/pdf", action: "PDF\PDFController@generateCommitments")
+    Route::get("memebers/commitments/pdf/{type?}", action: "PDF\PDFController@generateCommitments")
         ->name("members.generate-pdf-commitments");
     Route::get("memebers/pdf/export", action: "PDF\PDFController@exportMembers")
         ->name("members.export-members");

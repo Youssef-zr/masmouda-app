@@ -142,12 +142,6 @@
                             <span class="nav-main-link-name">{{ __("members.roles") }}</span>
                         </a>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link  {{ setActive("admin.committees.*") }}" href="{{ route("admin.committees.index")}}">
-                            <i class="nav-main-link-icon fa fa-rectangle-list"></i>
-                            <span class="nav-main-link-name">{{ __("members.committees") }}</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
         </ul>

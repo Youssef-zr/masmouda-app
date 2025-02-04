@@ -47,7 +47,14 @@
                     {{ __("global.export") }}
                 </a>
 
-                <a href="{{ route("admin.members.generate-pdf-commitments") }}" target="_blank"
+                <a href="{{ route("admin.members.generate-pdf-commitments",["type"=>"yearly"]) }}" target="_blank"
+                    data-bs-toggle="tooltip"
+                    title="{{ __('members.members_commitments_list') }}"
+                    class="btn btn-sm btn-success px-2 py-1">
+                    <i class="fa fa-file-pdf"></i>
+                    {{ __("members.commitments") }}
+                </a>
+                <a href="{{ route("admin.members.generate-pdf-commitments",["type"=>"monthly"]) }}" target="_blank"
                     data-bs-toggle="tooltip"
                     title="{{ __('members.members_commitments_list') }}"
                     class="btn btn-sm btn-success px-2 py-1">
@@ -122,7 +129,7 @@
         });
 
         // init tooltips
-        setTimeout(() => {            
+        setTimeout(() => {
             $("[data-bs-toggle='tooltip']").tooltip();
         }, 2000);
     })
