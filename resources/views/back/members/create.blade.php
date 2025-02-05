@@ -54,7 +54,7 @@
         <div class="block-content block-content-full overflow-x-auto">
             <div class="block-content block-content-full">
                 <!-- START Form -->
-                {!! Form::open(['route' => 'admin.members.store', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'admin.members.store', 'method' => 'post', "enctype"=>"multipart/form-data"]) !!}
                 @csrf
                 @include("back.members.form")
 

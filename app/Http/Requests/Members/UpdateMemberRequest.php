@@ -37,6 +37,7 @@ class UpdateMemberRequest extends FormRequest
             "permissions" => ["sometimes", "nullable", "array"],
             "political_party" => ["required", "nullable", "string"],
             "committee_id" => ["sometimes", "nullable"],
+            'cin_image' => 'sometimes|nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:300',
         ];
     }
 
@@ -56,6 +57,7 @@ class UpdateMemberRequest extends FormRequest
             "permissions" => __(key: "members.permissions"),
             "political_party" => __(key: "members.political_party"),
             "committee_id" => __(key: "members.committe_name"),
+            'cin_image' => __(key: "members.cin_image"),
         ];
     }
 }

@@ -46,16 +46,18 @@ class MembersDataTable extends DataTable
 
                 return $output;
             })
+
             ->editColumn('role', function ($query) {
                 $role_name = "name_" . app()->getLocale();
                 $output = "<p class='badge bg-info text-wrap mb-0' style='line-height:1.5'
-                    data-bs-toggle='tooltip'
-                    title='" . $query->role->$role_name . "'
-                >"
+                            data-bs-toggle='tooltip'
+                            title='" . $query->role->$role_name . "'
+                        >"
                     . Str::limit($query->role->$role_name, 30, "...") .
                     "</p>";
                 return $output;
             })
+
             ->editColumn("status", function ($query) {
                 $output = "<div class='dropdown'>
                 <button class='btn btn-sm " . ($query->status == "enabled" ? "btn-success" : "btn-danger") . " dropdown-toggle' type='button' id='statusDropdown' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -65,7 +67,7 @@ class MembersDataTable extends DataTable
 
                 foreach (statues() as $key => $value) {
                     $output .= "<li>
-                    <a class='dropdown-item' href='" . route('admin.members.change-status', [$query->id,$key]) . "' " . ($query->status == $key ? "style='font-weight: bold;'" : "") . ">" . __("global." . $key) . "</a>
+                    <a class='dropdown-item' href='" . route('admin.members.change-status', [$query->id, $key]) . "' " . ($query->status == $key ? "style='font-weight: bold;'" : "") . ">" . __("global." . $key) . "</a>
                 </li>";
                 }
 
@@ -106,7 +108,6 @@ class MembersDataTable extends DataTable
     {
         return [
             Column::make("id")
-                ->addClass('text-center')
                 ->title(__(key: 'members.id'))
                 ->addClass('text-center'),
             Column::make("name")
@@ -117,6 +118,7 @@ class MembersDataTable extends DataTable
                 ->addClass('text-center'),
             Column::make("role")
                 ->title(__('members.role_name'))
+                ->sortable(false)
                 ->addClass('text-center'),
             Column::make("status")
                 ->title(__(key: 'members.status'))

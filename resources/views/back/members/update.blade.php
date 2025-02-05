@@ -55,7 +55,7 @@
             <div class="block-content block-content-full">
 
                 <!-- Start Form -->
-                {!! Form::model($member, ['route' => ['admin.members.update',$member->id], 'method' => 'post']) !!}
+                {!! Form::model($member, ['route' => ['admin.members.update',$member->id], 'method' => 'post', "enctype"=>"multipart/form-data"]) !!}
                 @csrf
                 @method('PUT')
 

@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Member extends Model
+class Member extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
     protected $table = "members";
     protected $fillable = [
         "name",
@@ -31,6 +34,38 @@ class Member extends Model
     protected $casts = ['permissions' => 'array'];
     protected $appends = ['formated-rib-number', 'crypted-id',];
 
+
+    // Register the media collections for the model
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection("cin_image")
+            ->useDisk("public")
+            ->singleFile();
+    }
+
+    // Define the conversions for this model's media.
+    public function registerMediaConversions(Media $media = null): void
+    {
+        // Register to create a main image with decreased quality value
+        $this->addMediaConversion("main_image")
+            ->quality(75)
+            ->performOnCollections("cin_image");
+
+        // Resize to create a thumbnail and optimize the image
+        $this->addMediaConversion("thumb")
+            ->width(200)
+            ->height(300)
+            ->quality(75)
+            ->performOnCollections("cin_image");
+
+
+        // Resize to create a thumbnail and optimize the image
+        $this->addMediaConversion("optimized")
+            ->width(600)
+            ->height(842)
+            ->quality(75)
+            ->performOnCollections("cin_image");
+    }
 
     // explode role permissions
     public function getRolePermissionsAttribute()
@@ -77,8 +112,9 @@ class Member extends Model
     }
 
     // scope active
-    public function scopeActive(Builder $query,$status){
-        return $query->where('status',$status);
+    public function scopeActive(Builder $query, $status)
+    {
+        return $query->where('status', $status);
     }
 
 
@@ -91,5 +127,4 @@ class Member extends Model
     {
         return $this->belongsTo(RMember::class);
     }
-
 }

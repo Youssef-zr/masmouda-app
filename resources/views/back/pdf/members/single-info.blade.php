@@ -125,41 +125,41 @@
                 </td>
             </tr>
             <tr>
-                <th>{{ __("members.name") }}: </th>
+                <th>{{ __("members.name") }} </th>
                 <td>{{ $member->name }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.email") }}: </th>
+                <th>{{ __("members.email") }} </th>
                 <td>{{ $member->email }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.phone") }}: </th>
+                <th>{{ __("members.phone") }} </th>
                 <td>{{ $member->phone }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.adress") }}: </th>
+                <th>{{ __("members.adress") }} </th>
                 <td>{{ $member->adress }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.cin_number") }}: </th>
+                <th>{{ __("members.cin_number") }} </th>
                 <td class="text-uppercase">{{ $member->cin_number }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.bank_name") }}: </th>
+                <th>{{ __("members.bank_name") }} </th>
                 <td>{{ $member->bank_name }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.rib_number") }}: </th>
+                <th>{{ __("members.rib_number") }} </th>
                 <td>{{ $member->formatedRibNumber }}</td>
             </tr>
             <tr>
-                <th>{{ __("members.political_party") }}: </th>
+                <th>{{ __("members.political_party") }} </th>
                 <td>
                     <span>{{ $member->political_party }}</span>
                 </td>
             </tr>
             <tr>
-                <th>{{ __("members.role_name") }}: </th>
+                <th>{{ __("members.role_name") }} </th>
                 <td>
                     <p>
                         <span>{{ $member->role->name_fr }}</span> |
@@ -168,20 +168,21 @@
                 </td>
             </tr>
             <tr>
-                <th>{{ __("members.salary") }}: </th>
+                <th>{{ __("members.salary") }} </th>
                 <td>
                     {{ $member->role->salary }}
                     {{ __("global.mad_currency")}}
+                    ({{ __("members.monthly")}})
                 </td>
             </tr>
             <tr>
                 <th>
-                    {{ __("members.amount") }}:
-                    ({{ __("members.yearly")}})
+                    {{ __("members.salary") }}
                 </th>
                 <td>
                     {{ $member->amount }}
                     {{ __("global.mad_currency")}}
+                    ({{ __("members.yearly")}})
                 </td>
             </tr>
         </table>
@@ -219,6 +220,14 @@
         </table>
         @endif
     </div>
+
+    <!-- image previous -->
+    @if(isset($member) and $member->getFirstMediaUrl('cin_image'))
+    <div class="container" style="height:842px">
+        <img src="{{ url($member->getFirstMediaUrl('cin_image')) }}">
+    </div>
+    @endif
+
 </body>
 
 </html>

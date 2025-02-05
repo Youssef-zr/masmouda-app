@@ -30,8 +30,6 @@ class MemberFactory extends Factory
             "role_id" => random_int(1, max: 10),
             "permissions" => [
                 "permission 1 | الصلاحية الاولى",
-                "permission 2 | الصلاحية الثانية",
-                "permission 3 | الصلاحية الثالثة",
             ],
         ];
     }

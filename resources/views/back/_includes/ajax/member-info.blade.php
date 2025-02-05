@@ -84,12 +84,12 @@
             <i class="fa fa-dollar-sign gap-1"></i>
             {{__("members.salary")}}:
         </strong>
-        <span></i> {{ $member->role->salary }} {{ __('global.mad_currency') }}</span>
+        <span></i> {{ $member->role->salary }} {{ __('global.mad_currency') }} ({{ __("members.monthly") }})</span>
     </li>
     <li class="list-group-item">
         <strong>
             <i class="fa fa-dollar-sign gap-1"></i>
-            {{__("members.amount")}}:
+            {{__("members.salary")}}:
         </strong>
         <span></i> {{ $member->amount }} {{ __("global.mad_currency") }} ({{ __("members.yearly") }})</span>
     </li>

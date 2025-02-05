@@ -52,7 +52,12 @@
 
         </div>
     </div>
+</div>
+<!-- End Row -->
 
+
+<!-- start form row -->
+<div class="row">
     <!-- form field adress -->
     <div class="col-md-12">
         <div class="form-group mb-4">
@@ -78,7 +83,11 @@
             </div>
         </div>
     </div>
+</div>
+<!-- End Row -->
 
+<!-- start form row -->
+<div class="row">
     <!-- form field phone -->
     <div class="col-md-6">
         <div class="form-group mb-4">
@@ -134,7 +143,11 @@
             </div>
         </div>
     </div>
+</div>
+<!-- End Row -->
 
+<!-- start form row -->
+<div class="row">
     <!-- form field bank name -->
     <div class="col-md-6">
         <div class="form-group mb-4">
@@ -185,7 +198,11 @@
             </div>
         </div>
     </div>
+</div>
+<!-- End Row -->
 
+<!-- start form row -->
+<div class="row">
     <!-- form field political_party -->
     <div class="col-md-6">
         <div class="form-group mb-4">
@@ -200,7 +217,7 @@
             'placeholder' => __('members.political_party_placeholder')
             ]) !!}
 
-           @error('political_party')
+            @error('political_party')
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
@@ -219,13 +236,17 @@
             'class' => 'js-select2 form-select form-control' . ($errors->has('role_id') ? 'd-block is-invalid' : ''),
             'placeholder' => __('members.role_name_placeholder')
             ]) !!}
-        
-           @error('role_id')
+
+            @error('role_id')
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
     </div>
+</div>
+<!-- End Row -->
 
+<!-- start form row -->
+<div class="row">
     <!-- form field month -->
     <div class="col-md-4">
         <div class="form-group mb-4">
@@ -286,7 +307,6 @@
                 {{ __('members.amount') }} ({{ __("members.yearly") }})
             </label>
 
-
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="fa fa-dollar-sign"></i>
@@ -305,8 +325,45 @@
             @enderror
         </div>
     </div>
+</div>
+<!-- End Row -->
+
+<!-- start form row -->
+<div class="row">
+    <!-- form field cin_image -->
+    <div class="col-12">
+        <div class="form-group mb-4">
+            <label for="cin_image" class="form-label">
+                {{ __('members.cin_image') }}
+                <span class="text-danger">*</span>
+            </label>
+
+            {!! Form::file('cin_image', [
+            'id' => 'cin_image',
+            'required' => true,
+            'class' => 'form-control ' . ($errors->has('cin_image') ? 'is-invalid' : ''),
+            ]) !!}
+
+            @error('cin_image')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+
+            <!-- image previous -->
+            @if(isset($member) and $member->getFirstMediaUrl('cin_image'))
+            <a href="{{ $member->getFirstMediaUrl('cin_image',"main_image") }}" target="_blank" class="btn btn-info btn-sm mt-3">
+                <i class="fa fa-eye"></i>
+                {{ __("global.show") }}
+            </a>
+            @endif
+        </div>
+
+    </div>
+</div>
+<!-- end form row -->
 
 
+<!-- start form row -->
+<div class="row">
     <!-- form field permissions -->
     <div class="col-md-12">
         <hr class="border-primary">
@@ -369,7 +426,6 @@
             @enderror
         </div>
     </div>
-
 </div>
 <!-- end form row -->
 
