@@ -17,15 +17,25 @@ class MemberPDFController extends Controller
 {
     public function generateMemberPDF($id)
     {
-        try {
 
+        try {
+            // Decrypt member ID
             $decryptedId = Crypt::decryptString($id);
 
-            $member = Member::find($decryptedId);
+            // Retrieve member details
+            $member = Member::findOrFail($decryptedId);
             $member->load(['role']);
 
+            // Generate the main PDF
             $pdf = PDF::loadView('back.pdf.members.single-info', ['member' => $member]);
-            $fileName = __("members.member_info") . "_{$member->name}_{$member->created_at->format("Y")}.pdf";
+            $mpdf = $pdf->getMpdf();
+
+            // Retrieve the PDF file path
+            $pdfFilePath = $member->getFirstMediaPath("cin_image");
+            $this->addCinPage($pdfFilePath,$mpdf);
+
+            // Generate file name
+            $fileName = __("members.member_info") . "_{$member->name}_{$member->created_at->format('Y')}.pdf";
 
             return $pdf->stream($fileName);
         } catch (Exception $e) {
@@ -42,7 +52,7 @@ class MemberPDFController extends Controller
             $members->load(['role']);
 
             $pdf = PDF::loadView('back.pdf.members.export-list', ['members' => $members]);
-            $fileName = __("members.members_list") . "_{$members->first()->created_at->format("Y")}.pdf";
+            $fileName = __(key: "members.members_list") . "_{$members->first()->created_at->format("Y")}.pdf";
 
             return $pdf->stream($fileName);
         } catch (Exception $e) {
@@ -75,13 +85,37 @@ class MemberPDFController extends Controller
 
     private function getDecisionGenerator($type): IDecisionGenerator
     {
-        switch ($type) {
-            case 'yearly':
-                return new YearlyDecisionGenerator();
-            case 'monthly':
-                return new MonthlyDecisionGenerator();
-            default:
-                throw new InvalidArgumentException(__("Invalid decision type."));
+        $decision = match ($type) {
+            "yearly" => new YearlyDecisionGenerator(),
+            'monthly' => new MonthlyDecisionGenerator(),
+            default => throw new InvalidArgumentException(__("Invalid decision type."))
+        };
+
+        return $decision;
+    }
+
+    public function addCinPage($filePath,$mpdfInstance)
+    {
+
+        if ($filePath && file_exists($filePath)) {
+            // Get number of pages in the imported PDF
+            $pageCount = $mpdfInstance->SetSourceFile($filePath);
+
+            for ($i = 1; $i <= $pageCount; $i++) {
+                // Import the page
+                $tplId = $mpdfInstance->ImportPage($i);
+                $size = $mpdfInstance->GetTemplateSize($tplId); // Get dimensions of the imported page
+
+                // Set new page to match the imported PDF page size
+                $mpdfInstance->AddPageByArray([
+                    'orientation' => ($size['width'] > $size['height']) ? 'L' : 'P', // Landscape or Portrait
+                    'width' => $size['width'],
+                    'height' => $size['height']
+                ]);
+
+                // Use the template with correct scaling
+                $mpdfInstance->UseTemplate($tplId);
+            }
         }
     }
 }

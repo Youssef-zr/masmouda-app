@@ -34,7 +34,7 @@ class CreateMemberRequest extends FormRequest
             'amount' => 'sometimes|nullable|numeric',
             "permissions" => ["sometimes", "nullable", "array"],
             "political_party" => ["required", "nullable", "string"],
-            'cin_image' => 'sometimes|nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:300',
+            'cin_image' => 'sometimes|nullable|file|mimes:pdf|max:700',
         ];
     }
 

@@ -58,8 +58,8 @@
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            /* max-width: 800px; */
+            /* margin: 0 auto; */
         }
 
         .mt-5 {
@@ -98,6 +98,9 @@
 
         .mt-4 {
             margin-top: 20px;
+        }
+        .img-responsive{
+            max-width: 100%;
         }
     </style>
 </head>
@@ -220,13 +223,6 @@
         </table>
         @endif
     </div>
-
-    <!-- image previous -->
-    @if(isset($member) and $member->getFirstMediaUrl('cin_image'))
-    <div class="container" style="height:842px">
-        <img src="{{ url($member->getFirstMediaUrl('cin_image')) }}">
-    </div>
-    @endif
 
 </body>
 

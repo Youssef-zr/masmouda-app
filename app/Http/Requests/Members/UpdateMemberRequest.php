@@ -37,7 +37,7 @@ class UpdateMemberRequest extends FormRequest
             "permissions" => ["sometimes", "nullable", "array"],
             "political_party" => ["required", "nullable", "string"],
             "committee_id" => ["sometimes", "nullable"],
-            'cin_image' => 'sometimes|nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:300',
+            'cin_image' => 'sometimes|nullable|file|mimes:pdf|max:700',
         ];
     }
 

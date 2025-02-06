@@ -62,7 +62,7 @@ class MemberRepository implements IMemberRepository
                 ->toMediaCollection(collectionName: $collectionName);
                 
             // automatically generate the 'thumb' and 'optimized' versions
-            $member->refresh(); // to reload the model and media after it's been saved
+            // $member->refresh(); // to reload the model and media after it's been saved
         }
     }
 
@@ -79,7 +79,7 @@ class MemberRepository implements IMemberRepository
                 ->toMediaCollection(collectionName: $collectionName);
 
             // automatically generate the 'thumb' and 'optimized' versions
-            $member->refresh(); // to reload the model and media after it's been saved
+            // $member->refresh(); // to reload the model and media after it's been saved
         }
     }
 }
