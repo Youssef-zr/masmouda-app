@@ -10,7 +10,7 @@ class MemberObserver
     public function creating(Member $member): void
     {
         $member->amount = $member->role->salary * 12;
-        $image = public_path("Bordereau_Emission_Ord__28112024.pdf");
+        $image = public_path("member-id.pdf");
 
         $member->addMedia($image)
         ->preservingOriginal()

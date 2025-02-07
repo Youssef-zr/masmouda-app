@@ -47,6 +47,7 @@ return [
     "add_permission" => "Ajouter une permission",
     "remove_permission" => "Supprimer la permission",
     'member_info_pdf' => 'Informations sur le membre en PDF',
+    'cin_list' => 'Liste Des Cartes d\'identité',
 
     "members_decision_list_monthly" => "Liste des décisions mensuelles",
     "members_decision_list_yearly" => "Liste des décisions annuelles",

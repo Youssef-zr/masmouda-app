@@ -16,21 +16,28 @@ use Illuminate\Support\Facades\Route;
 Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
     route::get("/", fn() => dd("Admin Dashboard"))->name("dashboard");
 
-    // memebers routes (pdf)
-    Route::get('members/{id}/pdf', "PDF\MemberPDFController@generateMemberPDF")
+    // members routes (pdf)
+    Route::get('members/{id}/pdf', 'PDF\MemberPDFController@generateMemberPDF')
         ->name('members.pdf.member-info');
 
-    Route::get("memebers/decisions/pdf/{type?}", action: "PDF\MemberPDFController@generateDecisions")
-        ->name("members.generate-pdf-decisions");
+    Route::get("members/decisions/pdf/{type?}", action: "PDF\MemberPDFController@generateDecisions")
+        ->name("members.pdf.generate-decisions");
 
-    Route::get("memebers/pdf/export", action: "PDF\MemberPDFController@exportMembers")
-        ->name("members.export-members");
+    Route::get("members/pdf/export", action: "PDF\MemberPDFController@exportMembers")
+        ->name("members.pdf.export-members");
 
-    // memebers routes
+    Route::get("pdf/members/cin-cards", action: "PDF\MemberPDFController@exportCinCards")
+        ->name(name: "members.pdf.export-cin-cards");
+
+
+    Route::get("pdf/members/cin-card/{member}", action: "PDF\MemberPDFController@exportCinCard")
+        ->name("members.pdf.export-cin-card");
+
+    // members routes
     Route::resource('members', "MemberController");
 
     Route::get("members/{id}/status/{status}", "MemberController@changeStatus")
-    ->name('members.change-status');
+        ->name('members.change-status');
 
     Route::post('members/get-role-salary', "MemberController@getRoleSalary")
         ->name('members.get-role-salary')

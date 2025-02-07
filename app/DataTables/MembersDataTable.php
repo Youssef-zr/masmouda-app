@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Member;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
@@ -22,34 +23,48 @@ class MembersDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $output = "<a href=" . route('admin.members.edit', $query->id) . " class='btn btn-sm btn-success'><i class='fa fa-pencil'></i></a>";
-                $output .= "<a href=" . route('admin.members.show', parameters: $query->id) . "
+                $btns = "<a href=" . route('admin.members.edit', $query->id) . " 
+                class='dropdown-item mb-0'><i class='fa fa-pencil'></i> " . __("global.edit") . "</a>";
+
+                $btns .= "<a href=" . route('admin.members.show', parameters: $query->id) . "
                     data-bs-toggle='modal' data-bs-target='#record-info'
                     data-url='" . route("admin.members.show", $query->id) . "'
-                    class='btn btn-sm btn-primary mx-1 btn-record-info'>
-                    <i class='fa fa-eye'></i>
-                </a>";
+                    class='dropdown-item mb-0 btn-record-info'>
+                    <i class='fa fa-eye'></i> " . __("global.show") . "</a>";
 
-                $output .= "<a href=" . route('admin.members.pdf.member-info', parameters: $query->cryptedId) . "
-                    class='btn btn-sm btn-warning mx-1'
-                    target='_blank'
-                    data-bs-toggle='tooltip'
-                    title='" . __('members.member_info_pdf') . "'>
-                    <i class='fas fa-file-pdf'></i>
-                </a>";
+                $btns .= "<a href=" . route('admin.members.pdf.member-info', parameters: Crypt::encryptString($query->id)) . "
+                    class='dropdown-item mb-0'
+                    target='_blank'>
+                    <i class='fas fa-file-pdf'></i> " . __("global.export_pdf") ."</a>";
 
-                $output .= "<a href='javascript:void(0)' data-bs-toggle='modal' data-bs-target='#delete-record'
+                $btns .= "<a href=" . route('admin.members.pdf.export-cin-card', parameters: Crypt::encryptString($query->id)) . "
+                    class='dropdown-item mb-0'
+                    target='_blank'>
+                    <i class='fas fa-id-card'></i> " . __("global.show_cin") ."</a>";
+
+                $btns .= "<a href='javascript:void(0)' data-bs-toggle='modal' data-bs-target='#delete-record'
                     data-url='" . route('admin.members.destroy', $query->id) . "'
-                    class='btn btn-sm btn-danger delete-record-btn'>
-                    <i class='fa fa-trash'></i>
-                </a>";
+                    class='dropdown-item mb-0 delete-record-btn'>
+                    <i class='fa fa-trash'></i>  " . __("global.delete") . "</a>";
+
+
+                $output = '<div class="dropdown">
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdown-default-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-list"></i> '.
+                        __("members.actions")
+                    .'</button>
+                    <div class="dropdown-menu text-lowercase border border-secondary mt-1" aria-labelledby="dropdown-default-primary">';
+
+                $output .= $btns;
+
+                $output .= '</div></div>';
 
                 return $output;
             })
 
             ->editColumn('role', function ($query) {
                 $role_name = "name_" . app()->getLocale();
-                $output = "<p class='badge bg-info text-wrap mb-0' style='line-height:1.5'
+                $output = "<p class='text-wrap mb-0' style='line-height:1.5'
                             data-bs-toggle='tooltip'
                             title='" . $query->role->$role_name . "'
                         >"

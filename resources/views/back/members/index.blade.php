@@ -32,29 +32,34 @@
         <div class="block-header block-header-default">
             <div class="block-title">
                 <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdown-default-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" id="dropdown-default-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-list"></i>
                         {{ __("members.actions") }}
                     </button>
-                    <div class="dropdown-menu text-lowercase" aria-labelledby="dropdown-default-primary">
+                    <div class="dropdown-menu text-lowercase border border-primary mt-1" aria-labelledby="dropdown-default-primary">
                         <a href="{{ route("admin.members.create") }}" class="dropdown-item mb-0">
                             <i class="fa fa-plus-circle"></i>
                             {{ __("global.add") }}
                         </a>
 
-                        <a href="{{ route("admin.members.export-members") }}" target="_blank" class="dropdown-item mb-0">
+                        <a href="{{ route("admin.members.pdf.export-members") }}" target="_blank" class="dropdown-item mb-0">
                             <i class="fa fa-file-pdf"></i>
-                            {{ __("global.export_list") }}
+                            {{ __("members.members_list") }}
                         </a>
 
-                        <a href="{{ route("admin.members.generate-pdf-decisions",["type"=>"yearly"]) }}" target="_blank" class="dropdown-item mb-0">
+                        <a href="{{ route("admin.members.pdf.generate-decisions",["type"=>"yearly"]) }}" target="_blank" class="dropdown-item mb-0">
                             <i class="fa fa-file-pdf"></i>
                             {{ __("members.yearly_decisions") }}
                         </a>
 
-                        <a href="{{ route("admin.members.generate-pdf-decisions",["type"=>"monthly"]) }}" target="_blank" class="dropdown-item mb-0">
+                        <a href="{{ route("admin.members.pdf.generate-decisions",["type"=>"monthly"]) }}" target="_blank" class="dropdown-item mb-0">
                             <i class="fa fa-file-pdf"></i>
                             {{ __("members.monthly_decisions") }}
+                        </a>
+
+                        <a href="{{ route("admin.members.pdf.export-cin-cards") }}" target="_blank" class="dropdown-item mb-0">
+                            <i class="fa fa-file-pdf"></i>
+                            {{ __("members.cin_list") }}
                         </a>
 
                     </div>

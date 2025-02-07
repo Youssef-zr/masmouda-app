@@ -41,6 +41,8 @@ return [
     "show" => "Afficher",
     "entries" => "entrées",
     "showing" => "Affichage",
+    "show_cin" => "Afficher (CIN)",
+
     "to" => "à",
     "of" => "de",
     "results" => "résultats",
@@ -76,7 +78,6 @@ return [
     "select_all" => "Tout sélectionner",
     "clear_select_all" => "Effacer tout sélectionner",
     "refresh_datatable" => "Actualiser le tableau de données",
-    "export" => "Exporter",
     "export_csv" => "Exporter en CSV",
     "export_excel" => "Exporter en Excel",
     "export_pdf" => "Exporter en PDF",
