@@ -54,8 +54,13 @@
                           <!-- END Side Overlay -->
 
                           <div role="separator" class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="op_auth_signin.html">
-                              <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                          <!-- Authentication logout -->
+                          <form method="POST" id="form-logout" action="{{ route('logout') }}">
+                              @csrf
+                          </form>
+                          <a class="dropdown-item" href="#" id="btn-logout">
+                              <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i>
+                              {{ __('Log Out') }}
                           </a>
                       </div>
                   </div>
@@ -180,3 +185,14 @@
       <!-- END Header Loader -->
   </header>
   <!-- END Header -->
+
+  @push('js')
+  <script>
+      $(() => {
+          $('#btn-logout').on('click', function(e) {
+              e.preventDefault();
+              $("#form-logout").submit();
+          })
+      });
+  </script>
+  @endpush

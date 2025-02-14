@@ -4,6 +4,18 @@
  * side bar active links
  */
 
+if (!function_exists(function: 'formatedApp')) {
+    function formatedApp()
+    {
+
+    }
+
+}
+
+/**
+ * side bar active links
+ */
+
 if (!function_exists(function: 'setOpened')) {
     function setOpened(array $routes)
     {

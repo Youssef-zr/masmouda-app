@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
-    route::get("/", fn() => dd("Admin Dashboard"))->name("dashboard");
+    Route::view('/',view: 'back.dashboard')->name("dashboard");
+
 
     // members routes (pdf)
     Route::get('members/{id}/pdf', 'PDF\MemberPDFController@generateMemberPDF')
