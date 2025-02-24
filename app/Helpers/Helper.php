@@ -4,10 +4,12 @@
  * side bar active links
  */
 
-if (!function_exists(function: 'formatedApp')) {
-    function formatedApp()
+if (!function_exists(function: 'formatedAppName')) {
+    function formatedAppName()
     {
+        $appName = env("APP_NAME");
 
+        return explode(" ",$appName);
     }
 
 }
@@ -109,7 +111,7 @@ if (!function_exists("political_parties")) {
 
 if (!function_exists('datatables_lang')) {
     function datatables_lang()
-    {
+    { 
         return [
             'sProcessing' => trans('datatables.sProcessing'),
             'sLengthMenu' => trans('datatables.sLengthMenu'),

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             RMemberTableSeeder::class,
             MemberTableSeeder::class,
+            DepartmentTableSeeder::class,
         ]);
     }
 }

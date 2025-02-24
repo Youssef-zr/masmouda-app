@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
-    Route::view('/',view: 'back.dashboard')->name("dashboard");
+    Route::view('/', view: 'back.dashboard')->name("dashboard");
 
 
     // members routes (pdf)
@@ -49,6 +49,10 @@ Route::group(["prefix" => 'admin', 'as' => 'admin.'], function () {
     // role members routes
     Route::resource('role-members', "RMemberController");
 
-    // committees routes
-    Route::resource('committees', 'CommitteeController');
+    //  Community Employees routes list
+    Route::resource('community-employees', controller: "CommunityEmployeeController");
+
+    // Department controller
+    Route::resource('departments', "DepartmentController");
+
 });

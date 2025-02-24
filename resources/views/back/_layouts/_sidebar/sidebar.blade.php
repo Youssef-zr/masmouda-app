@@ -123,7 +123,7 @@
                     <span class="nav-main-link-name">{{ __("global.dashboard") }}</span>
                 </a>
             </li>
-            <li class="nav-main-item  {{ setOpened([ 'admin.members.*', 'admin.role-members.*','admin.committees.*']) }}">
+            <li class="nav-main-item  {{ setOpened([ 'admin.members.*', 'admin.role-members.*']) }}">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                     <i class="nav-main-link-icon fa fa-users"></i>
                     <span class="nav-main-link-name">{{ __("members.members") }}</span>
@@ -145,6 +145,32 @@
                         <a class="nav-main-link  {{ setActive("admin.role-members.*") }}" href="{{ route("admin.role-members.index")}}">
                             <i class="nav-main-link-icon fa fa-rectangle-list"></i>
                             <span class="nav-main-link-name">{{ __("members.roles") }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-main-item  {{ setOpened(['admin.community-employees.*','admin.departments.*']) }}">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                    <i class="nav-main-link-icon fa fa-users"></i>
+                    <span class="nav-main-link-name">{{ __("employees.employees") }}</span>
+                </a>
+                <ul class="nav-main-submenu">
+                    <li class="nav-main-item">
+                        <a class="nav-main-link {{ setActive("admin.community-employees.create") }}" href="{{ route("admin.community-employees.create")}}">
+                            <i class="nav-main-link-icon fa fa-plus-circle"></i>
+                            <span class="nav-main-link-name">{{ __("global.add") }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link {{ setActive("admin.community-employees.index") }}" href="{{ route("admin.community-employees.index")}}">
+                            <i class="nav-main-link-icon fa fa-rectangle-list"></i>
+                            <span class="nav-main-link-name">{{ __("employees.employees") }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link {{ setActive("admin.departments.index") }}" href="{{ route("admin.departments.index")}}">
+                            <i class="nav-main-link-icon fa fa-rectangle-list"></i>
+                            <span class="nav-main-link-name">{{ __("employees.departments") }}</span>
                         </a>
                     </li>
                 </ul>
